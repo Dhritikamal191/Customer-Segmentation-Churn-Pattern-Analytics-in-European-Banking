@@ -10,7 +10,7 @@ st.sidebar.image("unified.png",width=150)
 col1,col2=st.columns([0.5,6])
 
 with col1:
-     st.image("bank.png",width=90)
+     st.image("bank.png",width=110)
 with col2:
      st.title("Customer Segmentation & Churn Pattern Analytics in European Banking")
 
