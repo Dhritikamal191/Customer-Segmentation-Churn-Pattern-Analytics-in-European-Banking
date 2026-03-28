@@ -102,7 +102,7 @@ with col2:
 with col3:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("high.png",width=50)
+          st.image("ratio.jpg",width=50)
      with metric:
           st.metric("High Value Churn Ratio",f"{high_value_churn_ratio:.2f}%")
 
