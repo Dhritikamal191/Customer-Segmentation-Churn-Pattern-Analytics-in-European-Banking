@@ -88,35 +88,35 @@ col1,col2,col3,col4,col5=st.columns(5)
 with col1:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("overall.png",width=30)
+          st.image("overall.png",width=50)
      with metric:
           st.metric("Overall Churn Rate",f"{overall_churn_rate:.2f}%")
 
 with col2:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("segment.png",width=30)
+          st.image("segment.png",width=50)
      with metric:
           st.metric("Segment Churn Rate",f"{segment_rate:.2f}%")
 
 with col3:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("high.png",width=30)
+          st.image("high.png",width=50)
      with metric:
           st.metric("High Value Churn Ratio",f"{high_value_churn_ratio:.2f}%")
 
 with col4:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("indicator.png",width=30)
+          st.image("indicator.png",width=50)
      with metric:
           st.metric("Engagement Drop Indicator",f"{engagement_drop:.2f}%")    
 
 with col5:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("globe.png",width=30)
+          st.image("globe.png",width=50)
      with metric:
           st.metric("Geographic Risk Index",f"{highest_rate:.2f}%")
 
