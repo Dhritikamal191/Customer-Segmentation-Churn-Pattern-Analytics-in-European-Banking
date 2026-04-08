@@ -1,0 +1,18 @@
+[theme]
+primaryColor="#1f77b4"
+backgroundColor="#F5F7FA"
+secondaryBackgroundColor="#E8F0FE"
+textColor="#000000"
+font="sans serif"
+
+[server]
+headless=true
+
+[global]
+pageTitle="European Bank Churn Dashboard"
+
+layout="wide"
+
+[runner]
+magicEnabled=false
+
