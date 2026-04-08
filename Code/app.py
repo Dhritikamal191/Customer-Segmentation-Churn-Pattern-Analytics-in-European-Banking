@@ -1,5 +1,5 @@
 import streamlit as st
-st.image("images/logo.png")
+st.image(". ./images/logo.png")
 from PIL import Image
 import pandas as pd
 import numpy as np
