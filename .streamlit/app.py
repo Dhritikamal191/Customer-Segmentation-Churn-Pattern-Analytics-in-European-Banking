@@ -5,19 +5,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.graph_objects as go
-st.sidebar.image("unified.png",width=150)
+st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 col1,col2=st.columns([0.5,6])
 
 with col1:
-     st.image("bank.png",width=100)
+     st.image("Images/bank.png",width=100)
 with col2:
      st.title("Customer Segmentation & Churn Pattern Analytics in European Banking")
 
 st.divider()
 
 #Load Dataset
-df= pd.read_csv("European_Bank.csv")
+df= pd.read_csv("Data/European_Bank.csv")
 
 df["Geography"]=df["Geography"].fillna("Unknown")
 df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()],labels=["Low Value","Medium Value","High Value"])
@@ -88,35 +88,35 @@ col1,col2,col3,col4,col5=st.columns(5)
 with col1:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("overall.png",width=50)
+          st.image("Images/overall.png",width=50)
      with metric:
           st.metric("Overall Churn Rate",f"{overall_churn_rate:.2f}%")
 
 with col2:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("segment.png",width=50)
+          st.image("Images/segment.png",width=50)
      with metric:
           st.metric("Segment Churn Rate",f"{segment_rate:.2f}%")
 
 with col3:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("ratio.jpg",width=50)
+          st.image("Images/ratio.jpg",width=50)
      with metric:
           st.metric("High Value Churn Ratio",f"{high_value_churn_ratio:.2f}%")
 
 with col4:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("indicator.png",width=50)
+          st.image("Images/indicator.png",width=50)
      with metric:
           st.metric("Engagement Drop Indicator",f"{engagement_drop:.2f}%")    
 
 with col5:
      icon,metric=st.columns([1,3])
      with icon:
-          st.image("globe.png",width=50)
+          st.image("Images/globe.png",width=50)
      with metric:
           st.metric("Geographic Risk Index",f"{highest_rate:.2f}%")
 
