@@ -27,4 +27,27 @@ The goal is to provide actionable insights that help banks improve customer rete
 |       IsActiveMember        |              Activity Indicator         |
 |       EstimatedSalary       |            Estimated Annual Salary      |
 |         Exited              |             Churn Indicator (Target)    |
-|-----------------------------|-----------------------------------------|
+
+### Key Analysis Performed
+#### Customer Segmentation
+Customers were segmented based on:
+- Age Groups (<30, 30-45, 46-60, 60+)
+- Balance Categories (Zero, Low, High)
+- Credit Risk Levels (Low, Medium, High)
+- Product Usage (Single, Two, Multiple)
+- Engagement Level (Active vs Inactive)
+#### Churn Analysis
+- Overall churn rate calculated
+- Churn distribution across demographics and financial features
+- Identification of high-risk customer segments
+#### Trend Analysis
+- Churn trends across tenure
+- Multi-dimensional segmentation (Products+ Activity + Card usage)
+- Behavioral pattern discovery
+### Key Insights
+- High balance customers show higher churn risk
+-  Female customers have a higher churn rate than males
+-  Germany has the highest churn among all regions
+-  Customers aged 46-60 are most likely to churn
+-  Customers with multiple products show extreme churn behavior
+-  Inactive users are more prone to churn
