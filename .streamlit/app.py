@@ -6,6 +6,93 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.graph_objects as go
 
+st.markdown("""
+<style>
+
+/* Main App Background */
+.stApp {
+    background-color: #0E1117;
+    color: white;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #111827;
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] * {
+    color: white;
+}
+
+/* Headers */
+h1, h2, h3, h4 {
+    color: #00C9A7;
+}
+
+/* KPI Cards */
+.kpi-box {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    margin-bottom: 10px;
+}
+
+/* KPI Title */
+.kpi-title {
+    font-size: 14px;
+    color: #9CA3AF;
+}
+
+/* KPI Value */
+.kpi-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00C9A7;
+}
+
+/* Buttons */
+.stButton>button {
+    background-color: #00C9A7;
+    color: black;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+}
+
+.stButton>button:hover {
+    background-color: #00A78A;
+    color: white;
+}
+
+/* DataFrame */
+[data-testid="stDataFrame"] {
+    background-color: #1f2937;
+    color: white;
+}
+
+/* Metric */
+[data-testid="metric-container"] {
+    background-color: #1f2937;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #00C9A7;
+    border-radius: 10px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 col1,col2=st.columns([0.5,6])
