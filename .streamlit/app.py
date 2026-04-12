@@ -111,6 +111,16 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+
+/*  Block containers */
+[data-testid="stVerticalBlock"] {
+    background-color: transparent;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 col1,col2=st.columns([0.5,6])
