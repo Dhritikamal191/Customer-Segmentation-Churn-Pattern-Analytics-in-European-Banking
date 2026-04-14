@@ -216,6 +216,8 @@ geo_risk=filtered_df.groupby("Geography")["Exited"].mean()*100
 highest_geo=geo_risk.idxmax()
 highest_rate=geo_risk.max()
 
+if filtered_df.empty:
+    st.warning("No data available for selected filters")
 
 col1, col2, col3, col4, col5 = st.columns(5)
 
