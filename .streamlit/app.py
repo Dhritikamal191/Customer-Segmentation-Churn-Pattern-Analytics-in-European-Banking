@@ -247,6 +247,47 @@ with col5:
      with metric:
           st.metric("Geographic Risk Index",f"{highest_rate:.2f}%")
 
+col1, col2, col3, col4, col5 = st.columns(5)
+
+def kpi_card(icon_path, title, value):
+    return f"""
+    <div class="kpi-box">
+        <img src="{icon_path}" width="40" style="margin-bottom:10px;">
+        <div class="kpi-title">{title}</div>
+        <div class="kpi-value">{value}</div>
+    </div>
+    """
+
+with col1:
+    st.markdown(kpi_card("Images/overall.png",
+                         "Overall Churn Rate",
+                         f"{overall_churn_rate:.2f}%"),
+                unsafe_allow_html=True)
+
+with col2:
+    st.markdown(kpi_card("Images/segment.png",
+                         "Segment Churn Rate",
+                         f"{segment_rate:.2f}%"),
+                unsafe_allow_html=True)
+
+with col3:
+    st.markdown(kpi_card("Images/high.png",
+                         "High Value Churn Ratio",
+                         f"{high_value_churn_ratio:.2f}%"),
+                unsafe_allow_html=True)
+
+with col4:
+    st.markdown(kpi_card("Images/indicator.png",
+                         "Engagement Drop Indicator",
+                         f"{engagement_drop:.2f}%"),
+                unsafe_allow_html=True)
+
+with col5:
+    st.markdown(kpi_card("Images/globe.png",
+                         "Geographic Risk Index",
+                         f"{highest_rate:.2f}%"),
+                unsafe_allow_html=True)
+
 st.divider()
 
 tab1,tab2,tab3,tab4,tab5=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","Geography-wise Churn Visualization","Age-Tenure Churn Comparison","High-Value Customer Churn Explorer"]) 
