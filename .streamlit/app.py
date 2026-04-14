@@ -264,7 +264,7 @@ with tab1:
 
      age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
      st.subheader(f"Balance Distribution for Age Group {selected_age}")
-     st.line_chart(age_df["Balance"].sort_values())
+     st.scatter_chart(age_df["Balance"].sort_values())
 
 
 with tab2:
@@ -288,7 +288,7 @@ with tab2:
 
      st.subheader(f"Tenure Churn in {selected_segment}")
 
-     st.scatter_chart(tenure_churn)
+     st.line_chart(tenure_churn)
 
 with tab3:
      st.header("Geography-wise churn visualization")
