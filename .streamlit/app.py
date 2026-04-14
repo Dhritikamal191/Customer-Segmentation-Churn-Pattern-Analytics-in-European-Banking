@@ -101,6 +101,13 @@ input, textarea, select {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<div class="kpi-box">
+    <div class="kpi-title">Churn Rate</div>
+    <div class="kpi-value">20.3%</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 col1,col2=st.columns([0.5,6])
