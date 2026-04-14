@@ -357,7 +357,7 @@ with tab5:
      st.subheader(f"Age Group in {selected_geo}")
 
      age_group_df=geo_churn_df.groupby("AgeGroup")["Exited"].mean().reset_index()
-     st.line_chart(age_group_df.set_index("AgeGroup")) 
+     st.area_chart(age_group_df.set_index("AgeGroup")) 
 
      st.subheader("High Value Customer Churn by Balance")
     
