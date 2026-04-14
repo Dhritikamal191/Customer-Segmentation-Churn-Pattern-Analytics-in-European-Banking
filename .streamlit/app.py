@@ -210,43 +210,6 @@ geo_risk=filtered_df.groupby("Geography")["Exited"].mean()*100
 highest_geo=geo_risk.idxmax()
 highest_rate=geo_risk.max()
 
-col1,col2,col3,col4,col5=st.columns(5)
-
-with col1:
-     icon,metric=st.columns([1,3])
-     with icon:
-          st.image("Images/overall.png",width=50)
-     with metric:
-          st.metric("Overall Churn Rate",f"{overall_churn_rate:.2f}%")
-
-with col2:
-     icon,metric=st.columns([1,3])
-     with icon:
-          st.image("Images/segment.png",width=50)
-     with metric:
-          st.metric("Segment Churn Rate",f"{segment_rate:.2f}%")
-
-with col3:
-     icon,metric=st.columns([1,3])
-     with icon:
-          st.image("Images/high.png",width=50)
-     with metric:
-          st.metric("High Value Churn Ratio",f"{high_value_churn_ratio:.2f}%")
-
-with col4:
-     icon,metric=st.columns([1,3])
-     with icon:
-          st.image("Images/indicator.png",width=50)
-     with metric:
-          st.metric("Engagement Drop Indicator",f"{engagement_drop:.2f}%")    
-
-with col5:
-     icon,metric=st.columns([1,3])
-     with icon:
-          st.image("Images/globe.png",width=50)
-     with metric:
-          st.metric("Geographic Risk Index",f"{highest_rate:.2f}%")
-
 
 col1, col2, col3, col4, col5 = st.columns(5)
 
