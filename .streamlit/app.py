@@ -247,6 +247,48 @@ with col5:
      with metric:
           st.metric("Geographic Risk Index",f"{highest_rate:.2f}%")
 
+col1, col2, col3, col4, col5 = st.columns(5)
+
+with col1:
+    st.markdown("""
+    <div class="kpi-box">
+        <div class="kpi-title">📊 Overall Churn Rate</div>
+        <div class="kpi-value">f"{overall_churn_rate:.2f}%"</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="kpi-box">
+        <div class="kpi-title">📈 Segment Churn Rate</div>
+        <div class="kpi-value">f"{segment_rate:.2f}%"</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div class="kpi-box">
+        <div class="kpi-title">💰 High Value Churn</div>
+        <div class="kpi-value">f"{high_value_churn_ratio:.2f}%"</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown("""
+    <div class="kpi-box">
+        <div class="kpi-title">⚡ Engagement Drop</div>
+        <div class="kpi-value">f"{engagement_drop:.2f}%"</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col5:
+    st.markdown("""
+    <div class="kpi-box">
+        <div class="kpi-title">🌍 Geographic Risk</div>
+        <div class="kpi-value">f"{highest_rate:.2f}%"</div>
+    </div>
+    """, unsafe_allow_html=True)
+
 st.divider()
 
 tab1,tab2,tab3,tab4,tab5=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","Geography-wise Churn Visualization","Age-Tenure Churn Comparison","High-Value Customer Churn Explorer"]) 
