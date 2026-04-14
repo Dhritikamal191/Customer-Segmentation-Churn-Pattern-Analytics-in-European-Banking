@@ -247,31 +247,41 @@ with col5:
      with metric:
           st.metric("Geographic Risk Index",f"{highest_rate:.2f}%")
 
+
 col1, col2, col3, col4, col5 = st.columns(5)
 
-def kpi_card(icon_path, title, value):
+def kpi_card(title, value):
     return f"""
     <div class="kpi-box">
-        <img src="{icon_path}" width="40" style="margin-bottom:10px;">
         <div class="kpi-title">{title}</div>
         <div class="kpi-value">{value}</div>
     </div>
     """
 
 with col1:
-     st.markdown(kpi_card("Overall Churn Rate",f"{overall_churn_rate:.2f}%"),unsafe_allow_html=True)
+    st.markdown(kpi_card("📊 Overall Churn Rate",
+                         f"{overall_churn_rate:.2f}%"),
+                unsafe_allow_html=True)
 
 with col2:
-     st.markdown(kpi_card("Segment Churn Rate",f"{segment_rate:.2f}%"),unsafe_allow_html=True)
+    st.markdown(kpi_card("📈 Segment Churn Rate",
+                         f"{segment_rate:.2f}%"),
+                unsafe_allow_html=True)
 
 with col3:
-     st.markdown(kpi_card("High Value Churn Ratio",f"{high_value_churn_ratio:.2f}%"),unsafe_allow_html=True)
+    st.markdown(kpi_card("💰 High Value Churn Ratio",
+                         f"{high_value_churn_ratio:.2f}%"),
+                unsafe_allow_html=True)
 
 with col4:
-     st.markdown(kpi_card("Engagement Drop Indicator",f"{engagement_drop:.2f}%"),unsafe_allow_html=True)
+    st.markdown(kpi_card("⚡ Engagement Drop Indicator",
+                         f"{engagement_drop:.2f}%"),
+                unsafe_allow_html=True)
 
 with col5:
-     st.markdown(kpi_card("Geographic Risk Index",f"{highest_rate:.2f}%"), unsafe_allow_html=True)
+    st.markdown(kpi_card("🌍 Geographic Risk Index",
+                         f"{highest_rate:.2f}%"),
+                unsafe_allow_html=True)
 
 st.divider()
 
