@@ -163,6 +163,16 @@ geo_filter=st.sidebar.selectbox("Geography",["All"]+list(df["Geography"].unique(
 
 gender_filter=st.sidebar.selectbox("Gender",["All"]+list(df["Gender"].unique()))
 
+active_filter = st.sidebar.selectbox(
+    "Active Membership",
+    ["All", "Active", "Inactive"]
+)
+
+
+card_filter = st.sidebar.selectbox(
+    "Credit Card Status",
+    ["All", "Has Card", "No Card"]
+)
 filtered_df=df.copy()
 
 if value_filter !="All":
@@ -175,6 +185,21 @@ if gender_filter !="All":
    filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
 
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
+
+
+if active_filter != "All":
+    if active_filter == "Active":
+        filtered_df = filtered_df[filtered_df["IsActiveMember"] == 1]
+    else:
+        filtered_df = filtered_df[filtered_df["IsActiveMember"] == 0]
+
+
+if card_filter != "All":
+    if card_filter == "Has Card":
+        filtered_df = filtered_df[filtered_df["HasCrCard"] == 1]
+    else:
+        filtered_df = filtered_df[filtered_df["HasCrCard"] == 0]
+
 if filtered_df.empty:
     st.warning("No data available for selected filters")
 # =============================
