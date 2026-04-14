@@ -170,8 +170,8 @@ if geo_filter !="All":
 if salary_filter  !="All":
    filtered_df=filtered_df[filtered_df["EstimatedSalary"]==salary_filter]
 
-if balance_filter !="All":
-   filtered_df=filtered_df[filtered_df["Balance"]==balance_filter]
+if gender_filter !="All":
+   filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
     
 # =============================
 # Overall Churn Rate
