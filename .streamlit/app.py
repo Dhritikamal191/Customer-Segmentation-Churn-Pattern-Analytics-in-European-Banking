@@ -157,7 +157,7 @@ geo_filter=st.sidebar.selectbox("Geography",["All"]+list(df["Geography"].unique(
 
 gender_filter=st.sidebar.selectbox("Gender",["All"]+list(df["Gender"].unique()))
 
-balance_filter=st.sidebar.selectbox("Balance",["All"]+list(df["Balance"].unique()))
+salary_filter=st.sidebar.selectbox("EstimatedSalary",["All"]+list(df["EstimatedSalary"].unique()))
 
 filtered_df=df.copy()
 
@@ -167,8 +167,8 @@ if value_filter !="All":
 if geo_filter !="All":
    filtered_df=filtered_df[filtered_df["Geography"]==geo_filter]
 
-if gender_filter  !="All":
-   filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
+if salary_filter  !="All":
+   filtered_df=filtered_df[filtered_df["EstimatedSalary"]==salary_filter]
 
 if balance_filter !="All":
    filtered_df=filtered_df[filtered_df["Balance"]==balance_filter]
