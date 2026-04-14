@@ -101,6 +101,36 @@ input, textarea, select {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+
+/* Remove top white header */
+header[data-testid="stHeader"] {
+    background-color: transparent;
+}
+
+/* Remove top padding space */
+.block-container {
+    padding-top: 1rem;
+}
+
+/* Remove toolbar white background */
+div[data-testid="stToolbar"] {
+    background-color: transparent;
+}
+
+/* Optional: hide Streamlit branding (top right icons area background) */
+div[data-testid="stDecoration"] {
+    background: transparent;
+}
+
+/* Make full page smooth */
+.stApp {
+    background-color: #F5F7FA;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
