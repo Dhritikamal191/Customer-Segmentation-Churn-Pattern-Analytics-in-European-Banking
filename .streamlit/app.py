@@ -157,6 +157,8 @@ geo_filter=st.sidebar.selectbox("Geography",["All"]+list(df["Geography"].unique(
 
 gender_filter=st.sidebar.selectbox("Gender",["All"]+list(df["Gender"].unique()))
 
+balance_filter=st.sidebar.selectbox("Balance",["All"]+list(df["Balance"].unique()))
+
 filtered_df=df.copy()
 
 if value_filter !="All":
