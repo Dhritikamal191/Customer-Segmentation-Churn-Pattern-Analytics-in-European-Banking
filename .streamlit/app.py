@@ -6,6 +6,101 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.graph_objects as go
 
+st.markdown("""
+<style>
+
+/* Main App Background */
+.stApp {
+    background-color: #F5F7FA;
+    color: #1F2937;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #FFFFFF;
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] * {
+    color: #1F2937;
+}
+
+/* Headers */
+h1, h2, h3, h4 {
+    color: #2563EB;
+}
+
+/* KPI Cards */
+.kpi-box {
+    background: linear-gradient(135deg, #FFFFFF, #E5E7EB);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: #1F2937;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 10px;
+}
+
+/* KPI Title */
+.kpi-title {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+/* KPI Value */
+.kpi-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2563EB;
+}
+
+/* Buttons */
+.stButton>button {
+    background-color: #2563EB;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+}
+
+.stButton>button:hover {
+    background-color: #1D4ED8;
+    color: white;
+}
+
+/* DataFrame */
+[data-testid="stDataFrame"] {
+    background-color: #FFFFFF;
+    color: #1F2937;
+    border-radius: 10px;
+}
+
+/* Metric Cards */
+[data-testid="metric-container"] {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Input widgets */
+input, textarea, select {
+    background-color: #FFFFFF !important;
+    color: #1F2937 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #2563EB;
+    border-radius: 10px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 col1,col2=st.columns([0.5,6])
