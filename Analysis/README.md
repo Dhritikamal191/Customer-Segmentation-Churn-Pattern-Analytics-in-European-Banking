@@ -51,3 +51,25 @@ Customers were segmented based on:
 -  Customers aged 46-60 are most likely to churn
 -  Customers with multiple products show extreme churn behavior
 -  Inactive users are more prone to churn
+# Business Recommendations
+- Implement loyalty programs for high-value customers
+- Increase engagement strategies for inactive users
+- Promote bundled product offerings
+- Focus retention campaigns on high-risk regions
+- Personalize services for middle-aged customer
+
+# Tech Stack
+- Python
+- Pandas-Data manipulation
+- Matplotlib/Plotly-Visualization
+- Streamlit-Interactive dashboard
+
+# Dashboard Features
+- KPI Metrics (Churn Rate, Risk Score, Engagement)
+- Customer Segmentation Explorer
+- High-Value Customer Churn Analysis
+- Interactive filters (Age, Balalnce, Geography, etc.)
+- Trend analysis charts
+
+# Conclusion
+This project demonstrates how customer segmentation and exploratory analysis can effectively identify churn patterns. By combining data insights with business strategies, banks can proactively reduce churn and improve customer satisfaction.
