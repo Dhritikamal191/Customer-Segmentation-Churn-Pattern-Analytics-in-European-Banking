@@ -148,7 +148,12 @@ df= pd.read_csv("Data/European_Bank.csv")
 
 df["Geography"]=df["Geography"].fillna("Unknown")
 df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()],labels=["Low Value","Medium Value","High Value"])
+df["EstimatedSalary"]=df["EstimatedSalary"].astype(float)
+df["Balance"]=df["Balance"].astype(float)
+st.sidebar.header("Financial Filters")
 
+salary_min, salary_max=st.sidebar.slider("Salary Range", float(df["EstimatedSalary"].min()), float(df["EstimatedSalary"].max()), (float(df["EstimatedSalary"].min()),float(df["EstimatedSalary"].max())))
+balance_min, balance_max=st.sidebar.slider("Balance Range" float(df["balance"].min()), float(df["Balance"].max()),(float(df["Balance"].min()),float(df["Balance"].max())))
 st.sidebar.header("Segment Filters")
 
 value_filter=st.sidebar.selectbox("Customer Value Segment",["All","Low Value","Medium Value","High Value"])
@@ -167,7 +172,8 @@ if geo_filter !="All":
 
 if gender_filter !="All":
    filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
-    
+
+filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 # =============================
 # Overall Churn Rate
 # ===============================
