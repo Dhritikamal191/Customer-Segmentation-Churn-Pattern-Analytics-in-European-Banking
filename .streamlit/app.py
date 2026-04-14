@@ -329,7 +329,7 @@ with tab4:
 
      tenure_churn=age_df.groupby("Tenure")["Exited"].mean()*100
      st.subheader(f"Tenure Churn for Age Group {selected_age}")
-     st.line_chart(tenure_churn)
+     st.area_chart(tenure_churn)
 
 with tab5:
      st.markdown("### High Value Customer Churn Explorer")
