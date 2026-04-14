@@ -146,10 +146,12 @@ st.divider()
 #Load Dataset
 df= pd.read_csv("Data/European_Bank.csv")
 
+df.dropna(subset=["EstimatedSalary","Balance"])
 df["Geography"]=df["Geography"].fillna("Unknown")
 df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()],labels=["Low Value","Medium Value","High Value"])
 df["EstimatedSalary"]=df["EstimatedSalary"].astype(float)
 df["Balance"]=df["Balance"].astype(float)
+
 st.sidebar.header("Financial Filters")
 
 salary_min, salary_max=st.sidebar.slider("Salary Range", float(df["EstimatedSalary"].min()), float(df["EstimatedSalary"].max()), (float(df["EstimatedSalary"].min()),float(df["EstimatedSalary"].max())))
