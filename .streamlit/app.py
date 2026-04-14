@@ -171,7 +171,7 @@ if gender_filter  !="All":
    filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
 
 if balance_filter !="All":
-   filtered_df=filtered_df[filtered_df["Balance"]==balance_filter
+   filtered_df=filtered_df[filtered_df["Balance"]==balance_filter]
     
 # =============================
 # Overall Churn Rate
