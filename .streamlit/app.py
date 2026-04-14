@@ -259,19 +259,16 @@ def kpi_card(icon_path, title, value):
     """
 
 with col1:
-     st.markdown(kpi_card("Overall Churn Rate",                  f"{overall_churn_rate:.2f}%"),
-unsafe_allow_html=True)
+     st.markdown(kpi_card("Overall Churn Rate",f"{overall_churn_rate:.2f}%"),unsafe_allow_html=True)
 
 with col2:
-     st.markdown(kpi_card("Segment Churn Rate",f"{segment_rate:.2f}%"), unsafe_allow_html=True)
+     st.markdown(kpi_card("Segment Churn Rate",f"{segment_rate:.2f}%"),unsafe_allow_html=True)
 
 with col3:
-     st.markdown(kpi_card("High Value Churn Ratio",                      f"{high_value_churn_ratio:.2f}%"),
-unsafe_allow_html=True)
+     st.markdown(kpi_card("High Value Churn Ratio",f"{high_value_churn_ratio:.2f}%"),unsafe_allow_html=True)
 
 with col4:
-     st.markdown(kpi_card("Engagement Drop Indicator",                       f"{engagement_drop:.2f}%"),
-unsafe_allow_html=True)
+     st.markdown(kpi_card("Engagement Drop Indicator",f"{engagement_drop:.2f}%"),unsafe_allow_html=True)
 
 with col5:
      st.markdown(kpi_card("Geographic Risk Index",f"{highest_rate:.2f}%"), unsafe_allow_html=True)
