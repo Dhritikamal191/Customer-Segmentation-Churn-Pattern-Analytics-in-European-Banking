@@ -256,7 +256,8 @@ with col5:
 st.divider()
 
 tab1,tab2,tab3,tab4,tab5=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","Geography-wise Churn Visualization","Age-Tenure Churn Comparison","High-Value Customer Churn Explorer"]) 
-
+if filtered_df.empty:
+    st.warning("No data available for selected filters")
 with tab1:
      st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
 
