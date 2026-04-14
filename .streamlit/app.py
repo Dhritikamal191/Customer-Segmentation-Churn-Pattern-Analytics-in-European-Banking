@@ -288,7 +288,7 @@ with tab2:
 
      st.subheader(f"Tenure Churn in {selected_segment}")
 
-     st.line_chart(tenure_churn)
+     st.scatter_chart(tenure_churn)
 
 with tab3:
      st.header("Geography-wise churn visualization")
