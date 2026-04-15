@@ -201,6 +201,7 @@ df["Geography"]=df["Geography"].fillna("Unknown")
 df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()],labels=["Low Value","Medium Value","High Value"])
 df["EstimatedSalary"]=df["EstimatedSalary"].astype(float)
 df["Balance"]=df["Balance"].astype(float)
+df["IsActiveMember"]=df["IsActiveMember"].dropna()
 
 st.sidebar.header("Segment Filters")
 
