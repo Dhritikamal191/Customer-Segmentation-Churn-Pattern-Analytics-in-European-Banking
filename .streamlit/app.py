@@ -149,6 +149,35 @@ div[data-testid="stDecoration"] {
     opacity: 0.9;
 }
 
+
+/*  Slider color */
+.stSlider > div > div > div > div {
+    background-color: #2563EB !important;  /* Blue */
+}
+
+/*  Slider handle */
+.stSlider > div > div > div > div > div {
+    background-color: #1D4ED8 !important;
+    border: 2px solid #2563EB !important;
+}
+
+/*  Multiselect selected items (chips) */
+span[data-baseweb="tag"] {
+    background-color: #2563EB !important;
+    color: white !important;
+}
+
+/*  Dropdown focus border */
+div[data-baseweb="select"] > div {
+    border-color: #2563EB !important;
+}
+
+/*  Sidebar headers (optional styling) */
+section[data-testid="stSidebar"] h3 {
+    color: #2563EB !important;
+}
+
+
 </style>
 """, unsafe_allow_html=True)
 
