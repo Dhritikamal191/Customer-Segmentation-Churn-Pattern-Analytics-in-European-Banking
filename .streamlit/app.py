@@ -201,7 +201,6 @@ df["Geography"]=df["Geography"].fillna("Unknown")
 df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()],labels=["Low Value","Medium Value","High Value"])
 df["EstimatedSalary"]=df["EstimatedSalary"].astype(float)
 df["Balance"]=df["Balance"].astype(float)
-df["IsActiveMember"]=df["IsActiveMember"].dropna()
 
 st.sidebar.header("Segment Filters")
 
@@ -214,16 +213,10 @@ geo_filter=st.sidebar.selectbox("Geography",["All"]+list(df["Geography"].unique(
 
 gender_filter=st.sidebar.selectbox("Gender",["All"]+list(df["Gender"].unique()))
 
-active_filter = st.sidebar.selectbox(
-    "Active Membership",
-    ["All", "Active", "Inactive"]
-)
+active_filter = st.sidebar.selectbox("Active Membership",["All", "Active", "Inactive"])
 
+card_filter = st.sidebar.selectbox("Credit Card Status",["All", "Has Card", "No Card"])
 
-card_filter = st.sidebar.selectbox(
-    "Credit Card Status",
-    ["All", "Has Card", "No Card"]
-)
 filtered_df=df.copy()
 
 if value_filter !="All":
@@ -282,9 +275,10 @@ else:
 # ============================
 # Engagement Risk Indicator
 # ============================
-inactive=filtered_df[filtered_df["IsActiveMember"]==0]
-
-engagement_drop=(inactive["Exited"].sum()/inactive.shape[0])*100
+engagement_drop=filtered_df[filtered_df["IsActiveMember"]==0]["Exited"].mean()
+if pd.isna(engagement_drop):
+   engagement_drop=0
+engagement_drop *=100
 # ============================
 # Geo Risk Index
 # ============================
