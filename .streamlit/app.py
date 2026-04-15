@@ -220,7 +220,10 @@ card_filter = st.sidebar.selectbox("Credit Card Status",["All", "Has Card", "No 
 filtered_df=df.copy()
 
 if value_filter !="All":
-   filtered_df=filtered_df[filtered_df["ValueSegment"]==value_filter]
+   segment_df=filtered_df[filtered_df["ValueSegment"]==value_filter]
+
+else: 
+     segment_df=filtered_df 
 
 if geo_filter !="All":
    filtered_df=filtered_df[filtered_df["Geography"]==geo_filter]
@@ -254,11 +257,6 @@ if pd.isna(overall_churn_rate):
 # ===============================
 # Segment Churn Rate
 # ===============================
-if value_filter != "All":
-    segment_df = filtered_df[filtered_df["ValueSegment"] == value_filter]
-else:
-    segment_df = filtered_df
-
 if segment_df.shape[0] > 0:
     segment_rate = (segment_df["Exited"].sum() / segment_df.shape[0]) * 100
 else:
