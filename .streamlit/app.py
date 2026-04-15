@@ -269,9 +269,6 @@ if high_value.shape[0]>0:
    high_value_churn_ratio=(high_value["Exited"].sum()/high_value.shape[0])*100
 else:
      high_value_churn_ratio=0
-if pd.isna(high_value):
-   high_value=0
-high_value *=100
 # ============================
 # Engagement Risk Indicator
 # ============================
