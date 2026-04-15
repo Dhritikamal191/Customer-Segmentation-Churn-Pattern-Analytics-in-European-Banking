@@ -330,7 +330,7 @@ with col5:
 
 st.divider()
 
-tab1,tab2,tab3,tab4,tab5=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","Geography-wise Churn Visualization","Age-Tenure Churn Comparison","High-Value Customer Churn Explorer"]) 
+tab1,tab2,tab3=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","High-Value Customer Churn Explorer"]) 
 
 with tab1:
      st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
@@ -373,51 +373,6 @@ with tab2:
      st.line_chart(tenure_churn)
 
 with tab3:
-     st.header("Geography-wise churn visualization")
-
-     selected_country=st.sidebar.multiselect("Select Geography",options=df["Geography"].unique())
-
-     if selected_country:
-        filtered_df=df[df["Geography"].isin(selected_country)]
-     else:
-          filtered_df=df.copy()
-
-     geo_churn=filtered_df.groupby("Geography")["Exited"].mean()*100
-
-     st.subheader("Churn Rate by Geography")
-     st.bar_chart(geo_churn) 
-
-
-     selected_geo=st.selectbox("Drill Down:Select Geography",filtered_df["Geography"].unique())
-
-     geo_df=filtered_df[filtered_df["Geography"]==selected_geo]
-     segment_churn=geo_df.groupby("ValueSegment")["Exited"].mean()*100
-     st.subheader(f"Segment Churn in {selected_geo}")
-     st.area_chart(segment_churn)
-    
-     balance_churn=geo_df.groupby("Balance")["Exited"].mean()*100
-     st.subheader(f"Balance Churn in {selected_geo}")
-     st.scatter_chart(balance_churn)
-
-with tab4:
-     st.header("Age and Tenure Churn Comparison")
-
-     filtered_df["AgeGroup"]=pd.cut(filtered_df["Age"],bins=[18,30,40,50,60,100],labels=["18-30","31-40","41-50","51-60","60+"])
-
-     age_churn=filtered_df.groupby("AgeGroup")["Exited"].mean()*100
-
-     st.subheader("Churn Rate by Age Group")
-     st.bar_chart(age_churn)
-
-     selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].unique())
-
-     age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
-
-     tenure_churn=age_df.groupby("Tenure")["Exited"].mean()*100
-     st.subheader(f"Tenure Churn for Age Group {selected_age}")
-     st.area_chart(tenure_churn)
-
-with tab5:
      st.markdown("### High Value Customer Churn Explorer")
 
      df["Gender"]=df["Gender"].fillna("Unknown")
