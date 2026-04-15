@@ -160,6 +160,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.sidebar.image("Images/unified.png",width=150)
+st.set_page_config(layout="wide")
+
 st.divider()
 
 #Load Dataset
