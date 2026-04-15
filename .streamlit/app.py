@@ -254,14 +254,15 @@ if pd.isna(overall_churn_rate):
 # ===============================
 # Segment Churn Rate
 # ===============================
-segment_churn_rate=filtered_df[filtered_df["ValueSegment"]=="High Value"]
-
-high_segment=filtered_df[filtered_df["ValueSegment"]=="High Value"]
-
-if high_segment.shape[0]>0:
-   segment_rate=(high_segment["Exited"].sum()/high_segment.shape[0])*100
+if value_filter != "All":
+    segment_df = filtered_df[filtered_df["ValueSegment"] == value_filter]
 else:
-     segment_rate=0
+    segment_df = filtered_df
+
+if segment_df.shape[0] > 0:
+    segment_rate = (segment_df["Exited"].sum() / segment_df.shape[0]) * 100
+else:
+    segment_rate = 0
 
 # ===============================
 # High Value Churn
