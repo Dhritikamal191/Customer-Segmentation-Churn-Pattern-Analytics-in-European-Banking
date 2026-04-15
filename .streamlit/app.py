@@ -228,9 +228,6 @@ if geo_filter !="All":
 if gender_filter !="All":
    filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
 
-filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
-
-
 if active_filter != "All":
     if active_filter == "Active":
         filtered_df = filtered_df[filtered_df["IsActiveMember"] == 1]
@@ -243,6 +240,8 @@ if card_filter != "All":
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 1]
     else:
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 0]
+
+filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
 if filtered_df.empty:
     st.warning("No data available for selected filters")
