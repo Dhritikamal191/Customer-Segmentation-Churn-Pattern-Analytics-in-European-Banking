@@ -283,9 +283,12 @@ engagement_drop *=100
 # ============================
 
 geo_risk=filtered_df.groupby("Geography")["Exited"].mean()*100
-
-highest_geo=geo_risk.idxmax()
-highest_rate=geo_risk.max()
+if geo_risk.empty:
+   highest_geo="No Data"
+   highest_rate=0
+else:
+     highest_geo=geo_risk.idxmax()
+     highest_rate=geo_risk.max()
 
 col1, col2, col3, col4, col5 = st.columns(5)
 
