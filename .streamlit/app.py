@@ -155,10 +155,7 @@ div[data-testid="stDecoration"] {
 st.markdown("""
 <div class="header-box">
     <div class="header-title">
-        📊 Customer Segmentation & Churn Pattern Analytics
-    </div>
-    <div class="header-subtitle">
-        European Banking Dashboard
+        📊 Customer Segmentation & Churn Pattern Analytics in European Banking
     </div>
 </div>
 """, unsafe_allow_html=True)
