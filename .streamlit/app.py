@@ -184,7 +184,7 @@ section[data-testid="stSidebar"] h3 {
 st.markdown("""
 <div class="header-box">
     <div class="header-title">
-        🏦 Customer Segmentation & Churn Pattern Analytics in European Banking
+        👜 Customer Segmentation & Churn Pattern Analytics in European Banking
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -314,12 +314,12 @@ with col2:
                 unsafe_allow_html=True)
 
 with col3:
-    st.markdown(kpi_card("💰 High Value Churn Ratio",
+    st.markdown(kpi_card("📶 High Value Churn Ratio",
                          f"{high_value_churn_ratio:.2f}%"),
                 unsafe_allow_html=True)
 
 with col4:
-    st.markdown(kpi_card("⚡ Engagement Drop Indicator",
+    st.markdown(kpi_card("🧑‍🧑‍🧒‍🧒 Engagement Drop Indicator",
                          f"{engagement_drop:.2f}%"),
                 unsafe_allow_html=True)
 
