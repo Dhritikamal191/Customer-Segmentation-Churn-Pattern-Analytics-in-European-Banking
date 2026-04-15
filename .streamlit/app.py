@@ -395,6 +395,10 @@ with tab3:
      st.subheader(f"Segment Churn in {selected_geo}")
      st.area_chart(segment_churn)
 
+     tenure_churn=geo_df.groupby("Tenure")["Exited"].mean()*100
+     st.subheader(f"Tenure Churn in {selected_geo}")
+     st.bar_chart(tenure_churn)
+    
 with tab4:
      st.header("Age and Tenure Churn Comparison")
 
