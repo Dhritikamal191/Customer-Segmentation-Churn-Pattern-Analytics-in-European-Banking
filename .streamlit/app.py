@@ -228,7 +228,7 @@ if geo_filter !="All":
 if gender_filter !="All":
    filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
 
-if filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
+filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
 
 if active_filter != "All":
