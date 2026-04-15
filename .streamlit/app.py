@@ -160,15 +160,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.sidebar.image("Images/unified.png",width=150)
-st.set_page_config(layout="wide")
-col1,col2=st.columns([0.5,6])
-
-with col1:
-     st.image("Images/bank.png",width=100)
-with col2:
-     st.title("Customer Segmentation & Churn Pattern Analytics in European Banking")
-
 st.divider()
 
 #Load Dataset
