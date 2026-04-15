@@ -184,7 +184,7 @@ section[data-testid="stSidebar"] h3 {
 st.markdown("""
 <div class="header-box">
     <div class="header-title">
-        🏢 Customer Segmentation & Churn Pattern Analytics in European Banking
+        📊 Customer Segmentation & Churn Pattern Analytics in European Banking
     </div>
 </div>
 """, unsafe_allow_html=True)
