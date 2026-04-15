@@ -129,7 +129,38 @@ div[data-testid="stDecoration"] {
     background-color: #F5F7FA;
 }
 
+.header-box {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.header-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
 </style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="header-box">
+    <div class="header-title">
+        📊 Customer Segmentation & Churn Pattern Analytics
+    </div>
+    <div class="header-subtitle">
+        European Banking Dashboard
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
 st.sidebar.image("Images/unified.png",width=150)
