@@ -174,7 +174,6 @@ st.sidebar.header("Segment Filters")
 
 salary_min, salary_max=st.sidebar.slider("Salary Range", float(df["EstimatedSalary"].min()), float(df["EstimatedSalary"].max()), (float(df["EstimatedSalary"].min()),float(df["EstimatedSalary"].max())))
 balance_min, balance_max=st.sidebar.slider("Balance Range", float(df["Balance"].min()), float(df["Balance"].max()),(float(df["Balance"].min()),float(df["Balance"].max())))
-st.sidebar.header("Segment Filters")
 
 value_filter=st.sidebar.selectbox("Customer Value Segment",["All","Low Value","Medium Value","High Value"])
 
