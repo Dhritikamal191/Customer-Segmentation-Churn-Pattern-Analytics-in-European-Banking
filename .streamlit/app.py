@@ -394,7 +394,7 @@ with tab5:
 
      st.subheader("High Value Customer Churn by Geography")
      geo_churn_group=high_value_df.groupby("Geography")["Exited"].mean().reset_index()
-     st.bar_chart(geo_churn_group.set_index("Geography"))
+     
 
      selected_geo=st.selectbox("Select Geography",options=geo_churn_group["Geography"].dropna().unique(),key="geo_select")
      geo_churn_df=high_value_df[high_value_df["Geography"]==selected_geo]
