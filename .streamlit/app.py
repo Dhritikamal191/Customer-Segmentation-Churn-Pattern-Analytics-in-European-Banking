@@ -348,11 +348,16 @@ with col5:
 
 st.divider()
 
-st.subheader("BALANCE DISTRIBUTION") 
-   
-st.subheader(f"Balance Distribution")
-st.scatter_chart(filtered_df["Balance"].sort_values())
+st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
+     age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
 
+st.subheader("Customer Distribution by Age Group")
+st.bar_chart(age_dist)
+
+selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
+     age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
+st.subheader(f"Balance Distribution for Age Group {selected_age}")
+     st.line_chart(age_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
