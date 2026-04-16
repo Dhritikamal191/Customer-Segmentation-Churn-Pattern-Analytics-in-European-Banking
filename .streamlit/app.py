@@ -353,9 +353,11 @@ st.subheader("Customer Distribution (Drill-Down)")
 
 drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"])
 
-segment_count=filtered_df.groupby(drill_option).value_counts().sort_index()
+segment=filtered_df.groupby(drill_option).value_counts().sort_index()
+
 st.subheader(f"Customer Distribution by {drill_option}")
-st.bar_chart(segment_count)
+
+st.bar_chart(segment)
 
 st.subheader("Overall Customer Churn Summary")
 
