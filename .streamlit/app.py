@@ -202,6 +202,11 @@ df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()
 df["EstimatedSalary"]=df["EstimatedSalary"].astype(float)
 df["Balance"]=df["Balance"].astype(float)
 
+bins = [0, 30, 45, 60, 100]
+labels = ["<30", "30-45", "46-60", "60+"]
+
+df["AgeGroup"] = pd.cut(df["Age"], bins=bins, labels=labels)
+
 st.sidebar.header("Segment Filters")
 
 salary_min, salary_max=st.sidebar.slider("Salary Range", float(df["EstimatedSalary"].min()), float(df["EstimatedSalary"].max()), (float(df["EstimatedSalary"].min()),float(df["EstimatedSalary"].max())))
@@ -224,6 +229,11 @@ card_filter = st.sidebar.selectbox("Credit Card Status",["All", "Has Card", "No 
 product_filter = st.sidebar.selectbox(
     "Number of Products",
     ["All"] + sorted(df["NumOfProducts"].dropna().unique())
+)
+
+age_filter = st.sidebar.selectbox(
+    "Age Group",
+    ["All"] + labels
 )
 
 filtered_df=df.copy()
@@ -252,6 +262,9 @@ if card_filter != "All":
 
 if product_filter != "All":
     filtered_df = filtered_df[filtered_df["NumOfProducts"] == product_filter]
+
+if age_filter != "All":
+    filtered_df = filtered_df[filtered_df["AgeGroup"] == age_filter]
 
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
@@ -340,13 +353,80 @@ tab1,tab2,tab3=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","H
 with tab1:
      st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
 
-     filtered_df["AgeGroup"]=pd.cut(filtered_df["Age"],bins=[18,30,40,50,60,100],labels=["18-30","31-40","41-50","51-60","60+"])
+view = st.radio(
+    "Select Drill Level",
+    ["Age Distribution", "Gender Distribution", "Geography Distribution"]
+)
 
-     age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
+if view == "Age Distribution":
+    
+    age_dist = filtered_df["AgeGroup"].value_counts().reset_index()
+    age_dist.columns = ["AgeGroup", "Customers"]
 
-     st.subheader("Customer Distribution by Age Group")
-     st.bar_chart(age_dist, use_container_width=True)
+    fig = px.bar(
+        age_dist,
+        x="AgeGroup",
+        y="Customers",
+        color="AgeGroup",
+        title="Customer Distribution by Age Group"
+    )
 
+    st.plotly_chart(fig)
+
+elif view == "Gender Distribution":
+    
+    selected_age = st.selectbox(
+        "Select Age Group",
+        sorted(filtered_df["AgeGroup"].dropna().unique())
+    )
+
+    gender_df = filtered_df[filtered_df["AgeGroup"] == selected_age]
+
+    gender_dist = gender_df["Gender"].value_counts().reset_index()
+    gender_dist.columns = ["Gender", "Customers"]
+
+    fig = px.bar(
+        gender_dist,
+        x="Gender",
+        y="Customers",
+        color="Gender",
+        title=f"Gender Distribution in {selected_age}"
+    )
+
+    st.plotly_chart(fig)
+
+elif view == "Geography Distribution":
+    
+    selected_age = st.selectbox(
+        "Select Age Group",
+        sorted(filtered_df["AgeGroup"].dropna().unique()),
+        key="age_geo"
+    )
+
+    selected_gender = st.selectbox(
+        "Select Gender",
+        sorted(filtered_df["Gender"].dropna().unique())
+    )
+
+    geo_df = filtered_df[
+        (filtered_df["AgeGroup"] == selected_age) &
+        (filtered_df["Gender"] == selected_gender)
+    ]
+
+    geo_dist = geo_df["Geography"].value_counts().reset_index()
+    geo_dist.columns = ["Geography", "Customers"]
+
+    fig = px.bar(
+        geo_dist,
+        x="Geography",
+        y="Customers",
+        color="Geography",
+        title=f"Geography Distribution ({selected_age} | {selected_gender})"
+    )
+
+    st.plotly_chart(fig)
+
+     
      selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
 
      age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
