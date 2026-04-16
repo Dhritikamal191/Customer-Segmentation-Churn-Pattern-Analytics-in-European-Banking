@@ -351,7 +351,7 @@ st.divider()
 st.subheader("BALANCE DISTRIBUTION") 
    
 st.subheader(f"Balance Distribution")
-     st.scatter_chart(age_df["Balance"].sort_values())
+st.scatter_chart(age_df["Balance"].sort_values())
 
 
 st.subheader("Overall Customer Churn Summary")
