@@ -204,7 +204,6 @@ df["Balance"]=df["Balance"].astype(float)
 
 bins = [0, 30, 45, 60, 100]
 labels = ["<30", "30-45", "46-60", "60+"]
-
 df["AgeGroup"] = pd.cut(df["Age"], bins=bins, labels=labels)
 
 st.sidebar.header("Segment Filters")
