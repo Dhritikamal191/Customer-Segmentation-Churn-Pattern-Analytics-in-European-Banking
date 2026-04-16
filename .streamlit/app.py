@@ -221,6 +221,11 @@ active_filter = st.sidebar.selectbox("Active Membership",["All", "Active", "Inac
 
 card_filter = st.sidebar.selectbox("Credit Card Status",["All", "Has Card", "No Card"])
 
+product_filter = st.sidebar.selectbox(
+    "Number of Products",
+    ["All"] + sorted(df["NumOfProducts"].dropna().unique())
+)
+
 filtered_df=df.copy()
 
 if value_filter !="All":
@@ -245,6 +250,8 @@ if card_filter != "All":
     else:
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 0]
 
+if product_filter != "All":
+    filtered_df = filtered_df[filtered_df["NumOfProducts"] == product_filter]
 
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
