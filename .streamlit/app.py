@@ -448,7 +448,7 @@ st.markdown("### High Value Customer Churn Explorer")
 
 df["Gender"]=df["Gender"].fillna("Unknown")
 df["Exited"]=df["Exited"].map({0:0,1:1,"Yes":1,"No":0})
-     df["AgeGroup"]=pd.cut(df["Age"],bins=[18,30,40,50,60,100],labels=["18-30","31-40","41-50","51-60","60+"])
+     
 high_value_df=df[(df["Balance"]>df["Balance"].median()) | (df["EstimatedSalary"]>df["EstimatedSalary"].median())]
 
 st.subheader("High Value Customer Churn by Geography")
