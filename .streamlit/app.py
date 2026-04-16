@@ -360,7 +360,7 @@ selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].
 
 age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
 st.subheader(f"Balance Distribution for Age Group {selected_age}")
-st.line_chart(age_df["Balance"].sort_values())
+st.scatter_chart(age_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
