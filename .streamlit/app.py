@@ -445,79 +445,78 @@ st.subheader(f"Tenure Churn in {selected_segment}")
 st.line_chart(tenure_churn)
 
 
-     st.markdown("### High Value Customer Churn Explorer")
+st.markdown("### High Value Customer Churn Explorer")
 
-     df["Gender"]=df["Gender"].fillna("Unknown")
-     df["Exited"]=df["Exited"].map({0:0,1:1,"Yes":1,"No":0})
+df["Gender"]=df["Gender"].fillna("Unknown")
+df["Exited"]=df["Exited"].map({0:0,1:1,"Yes":1,"No":0})
      df["AgeGroup"]=pd.cut(df["Age"],bins=[18,30,40,50,60,100],labels=["18-30","31-40","41-50","51-60","60+"])
-     high_value_df=df[(df["Balance"]>df["Balance"].median()) | (df["EstimatedSalary"]>df["EstimatedSalary"].median())]
+high_value_df=df[(df["Balance"]>df["Balance"].median()) | (df["EstimatedSalary"]>df["EstimatedSalary"].median())]
 
-     st.subheader("High Value Customer Churn by Geography")
-     geo_churn_group=high_value_df.groupby("Geography")["Exited"].mean().reset_index()
+st.subheader("High Value Customer Churn by Geography")
+geo_churn_group=high_value_df.groupby("Geography")["Exited"].mean().reset_index()
      
 
-     selected_geo=st.selectbox("Select Geography",options=geo_churn_group["Geography"].dropna().unique(),key="geo_select")
-     geo_churn_df=high_value_df[high_value_df["Geography"]==selected_geo]
-     st.subheader(f"Gender in {selected_geo}")
-     gender_churn_group=geo_churn_df.groupby("Gender")["Exited"].mean().reset_index()
-     st.bar_chart(gender_churn_group.set_index("Gender"))
+selected_geo=st.selectbox("Select Geography",options=geo_churn_group["Geography"].dropna().unique(),key="geo_select")
+geo_churn_df=high_value_df[high_value_df["Geography"]==selected_geo]
+st.subheader(f"Gender in {selected_geo}")
+gender_churn_group=geo_churn_df.groupby("Gender")["Exited"].mean().reset_index()
+st.bar_chart(gender_churn_group.set_index("Gender"))
    
-     st.subheader(f"Age Group in {selected_geo}")
+st.subheader(f"Age Group in {selected_geo}")
+age_group_df=geo_churn_df.groupby("AgeGroup")["Exited"].mean().reset_index()
+st.area_chart(age_group_df.set_index("AgeGroup")) 
 
-     age_group_df=geo_churn_df.groupby("AgeGroup")["Exited"].mean().reset_index()
-     st.area_chart(age_group_df.set_index("AgeGroup")) 
-
-     st.subheader("High Value Customer Churn by Balance")
+st.subheader("High Value Customer Churn by Balance")
     
-     high_value = df[df["Balance"] > df["Balance"].median()]
+high_value = df[df["Balance"] > df["Balance"].median()]
      
-     df["SalarySegment"] = pd.cut(df["EstimatedSalary"],bins=[0, 50000, 100000, df["EstimatedSalary"].max()],labels=["Low", "Medium", "High"])
+df["SalarySegment"] = pd.cut(df["EstimatedSalary"],bins=[0, 50000, 100000, df["EstimatedSalary"].max()],labels=["Low", "Medium", "High"])
 
-     df["BalanceSegment"] = df["Balance"].apply(lambda x: "Zero" if x == 0 else ("Low" if x <= 100000 else "High"))
+df["BalanceSegment"] = df["Balance"].apply(lambda x: "Zero" if x == 0 else ("Low" if x <= 100000 else "High"))
 
-     salary_filter = st.selectbox("Select Salary Segment",["All"] + list(high_value["EstimatedSalary"].dropna().unique()))
+salary_filter = st.selectbox("Select Salary Segment",["All"] + list(high_value["EstimatedSalary"].dropna().unique()))
 
-     activity_filter = st.selectbox("Active Member",["All", 1, 0])
+activity_filter = st.selectbox("Active Member",["All", 1, 0])
 
-     product_filter = st.selectbox("Number of Products",["All"] + sorted(high_value["NumOfProducts"].unique()))
-     filtered_df = high_value.copy()
+product_filter = st.selectbox("Number of Products",["All"] + sorted(high_value["NumOfProducts"].unique()))
+filtered_df = high_value.copy()
 
-     if salary_filter != "All":
-        filtered_df = filtered_df[filtered_df["EstimatedSalary"] == salary_filter]
+if salary_filter != "All":
+   filtered_df = filtered_df[filtered_df["EstimatedSalary"] == salary_filter]
 
-     if activity_filter != "All":
-        filtered_df = filtered_df[filtered_df["IsActiveMember"] == activity_filter]
+if activity_filter != "All":
+   filtered_df = filtered_df[filtered_df["IsActiveMember"] == activity_filter]
 
-     if product_filter != "All":
-        filtered_df = filtered_df[filtered_df["NumOfProducts"] == product_filter]
+if product_filter != "All":
+   filtered_df = filtered_df[filtered_df["NumOfProducts"] == product_filter]
 
-     salary_churn = filtered_df.groupby("EstimatedSalary")["Exited"].mean() * 100
+salary_churn = filtered_df.groupby("EstimatedSalary")["Exited"].mean() * 100
 
-     fig1 = go.Figure()
+fig1 = go.Figure()
 
-     fig1.add_trace(go.Bar(x=salary_churn.index,y=salary_churn.values,name="Churn Rate"))
+fig1.add_trace(go.Bar(x=salary_churn.index,y=salary_churn.values,name="Churn Rate"))
 
-     fig1.update_layout(title="Churn Rate by Salary Segment",xaxis_title="Salary Segment",yaxis_title="Churn Rate (%)")
+fig1.update_layout(title="Churn Rate by Salary Segment",xaxis_title="Salary Segment",yaxis_title="Churn Rate (%)")
 
-     st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig1, use_container_width=True)
 
-     engagement_churn = filtered_df.groupby("IsActiveMember")["Exited"].mean() * 100
+engagement_churn = filtered_df.groupby("IsActiveMember")["Exited"].mean() * 100
 
-     fig2 = go.Figure()
+fig2 = go.Figure()
 
-     fig2.add_trace(go.Bar(x=["Inactive", "Active"],y=engagement_churn.values,name="Churn Rate"))
+fig2.add_trace(go.Bar(x=["Inactive", "Active"],y=engagement_churn.values,name="Churn Rate"))
 
-     fig2.update_layout(title="Churn by Activity Status",xaxis_title="Customer Activity",yaxis_title="Churn Rate (%)")
+fig2.update_layout(title="Churn by Activity Status",xaxis_title="Customer Activity",yaxis_title="Churn Rate (%)")
 
-     st.plotly_chart(fig2, use_container_width=True)
+st.plotly_chart(fig2, use_container_width=True)
 
-     product_churn = filtered_df.groupby("NumOfProducts")["Exited"].mean() * 100
+product_churn = filtered_df.groupby("NumOfProducts")["Exited"].mean() * 100
 
-     fig3 = go.Figure()
+fig3 = go.Figure()
 
-     fig3.add_trace(go.Bar(x=product_churn.index,y=product_churn.values,name="Churn Rate"))
+fig3.add_trace(go.Bar(x=product_churn.index,y=product_churn.values,name="Churn Rate"))
 
-     fig3.update_layout(title="Churn by Number of Products",xaxis_title="Products",yaxis_title="Churn Rate (%)")
+fig3.update_layout(title="Churn by Number of Products",xaxis_title="Products",yaxis_title="Churn Rate (%)")
 
-     st.plotly_chart(fig3, use_container_width=True)
+st.plotly_chart(fig3, use_container_width=True)
        
