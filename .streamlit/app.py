@@ -348,83 +348,65 @@ with col5:
 
 st.divider()
 
-st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
 
-view = st.radio(
-    "Select Drill Level",
-    ["Age Distribution", "Gender Distribution", "Geography Distribution"]
+st.subheader("Customer Distribution (Drill-Down)")
+
+# ---------- STEP 1: AGE ----------
+selected_age = st.selectbox(
+    "Select Age Group",
+    ["All"] + sorted(filtered_df["AgeGroup"].dropna().unique())
 )
 
-if view == "Age Distribution":
-    
-    age_dist = filtered_df["AgeGroup"].value_counts().reset_index()
-    age_dist.columns = ["AgeGroup", "Customers"]
+age_df = filtered_df.copy()
 
-    fig = px.bar(
-        age_dist,
-        x="AgeGroup",
-        y="Customers",
-        color="AgeGroup",
-        title="Customer Distribution by Age Group"
-    )
+if selected_age != "All":
+    age_df = age_df[age_df["AgeGroup"] == selected_age]
 
-    st.plotly_chart(fig)
 
-elif view == "Gender Distribution":
-    
-    selected_age = st.selectbox(
-        "Select Age Group",
-        sorted(filtered_df["AgeGroup"].dropna().unique())
-    )
+# ---------- STEP 2: GENDER ----------
+selected_gender = st.selectbox(
+    "Select Gender",
+    ["All"] + sorted(age_df["Gender"].dropna().unique())
+)
 
-    gender_df = filtered_df[filtered_df["AgeGroup"] == selected_age]
+gender_df = age_df.copy()
 
-    gender_dist = gender_df["Gender"].value_counts().reset_index()
-    gender_dist.columns = ["Gender", "Customers"]
+if selected_gender != "All":
+    gender_df = gender_df[gender_df["Gender"] == selected_gender]
 
-    fig = px.bar(
-        gender_dist,
-        x="Gender",
-        y="Customers",
-        color="Gender",
-        title=f"Gender Distribution in {selected_age}"
-    )
 
-    st.plotly_chart(fig)
+# ---------- STEP 3: GEOGRAPHY ----------
+selected_geo = st.selectbox(
+    "Select Geography",
+    ["All"] + sorted(gender_df["Geography"].dropna().unique())
+)
 
-elif view == "Geography Distribution":
-    
-    selected_age = st.selectbox(
-        "Select Age Group",
-        sorted(filtered_df["AgeGroup"].dropna().unique()),
-        key="age_geo"
-    )
+final_df = gender_df.copy()
 
-    selected_gender = st.selectbox(
-        "Select Gender",
-        sorted(filtered_df["Gender"].dropna().unique())
-    )
+if selected_geo != "All":
+    final_df = final_df[final_df["Geography"] == selected_geo]
 
-    geo_df = filtered_df[
-        (filtered_df["AgeGroup"] == selected_age) &
-        (filtered_df["Gender"] == selected_gender)
-    ]
 
-    geo_dist = geo_df["Geography"].value_counts().reset_index()
-    geo_dist.columns = ["Geography", "Customers"]
+# ---------- SAFETY CHECK ----------
+if final_df.empty:
+    st.warning(" No data for selected combination")
+    st.stop()
 
-    fig = px.bar(
-        geo_dist,
-        x="Geography",
-        y="Customers",
-        color="Geography",
-        title=f"Geography Distribution ({selected_age} | {selected_gender})"
-    )
 
-    st.plotly_chart(fig)
+# ---------- VISUALIZATION ----------
+st.markdown("###  Distribution Overview")
 
-    
-overall_churn=filtered_df["Exited"].mean()*100
+fig = px.histogram(
+    final_df,
+    x="AgeGroup",
+    color="Gender",
+    title="Customer Distribution by Age & Gender",
+    barmode="group"
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+
 st.subheader("Overall Customer Churn Summary")
 
 drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
