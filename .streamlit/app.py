@@ -353,11 +353,54 @@ st.subheader("Customer Distribution (Drill-Down)")
 
 drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
 
-segment=filtered_df.groupby(drill_option).value_counts().sort_index()
+age_dist = filtered_df["AgeGroup"].value_counts().sort_index()
 
-st.subheader(f"Customer Distribution by {drill_option}")
+st.subheader("Customer Distribution by Age Group")
+st.bar_chart(age_dist)
 
-st.bar_chart(segment)
+
+# ---------- LEVEL 2: GENDER DRILL-DOWN ----------
+selected_gender = st.selectbox(
+    "Drill Down: Select Gender",
+    ["All"] + sorted(filtered_df["Gender"].dropna().unique())
+)
+
+gender_df = filtered_df.copy()
+
+if selected_gender != "All":
+    gender_df = gender_df[gender_df["Gender"] == selected_gender]
+
+
+# ---------- LEVEL 3: GEOGRAPHY DRILL-DOWN ----------
+selected_geo = st.selectbox(
+    "Drill Down: Select Geography",
+    ["All"] + sorted(gender_df["Geography"].dropna().unique())
+)
+
+final_df = gender_df.copy()
+
+if selected_geo != "All":
+    final_df = final_df[final_df["Geography"] == selected_geo]
+
+
+# ---------- SAFETY ----------
+if final_df.empty:
+    st.warning("⚠️ No data for selected combination")
+    st.stop()
+
+
+# ---------- FINAL VISUAL ----------
+st.subheader("Final Customer Distribution")
+
+fig = px.histogram(
+    final_df,
+    x="AgeGroup",
+    color="Gender",
+    barmode="group",
+    title="Customer Distribution by Age, Gender & Geography"
+)
+
+st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Overall Customer Churn Summary")
 
