@@ -244,8 +244,6 @@ if card_filter != "All":
     else:
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 0]
 
-if selected_country!="All":
-   filtered_df=filtered_df[filtered_df["Geography"]==selected_country]
 
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
