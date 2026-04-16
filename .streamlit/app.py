@@ -348,40 +348,10 @@ with col5:
 
 st.divider()
 
-st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION") 
+st.subheader("BALANCE DISTRIBUTION") 
    
-# 1. Select Age Group (Existing)
-selected_age = st.selectbox(
-    "Drill Down: Select Age Group", 
-    options=sorted(filtered_df["AgeGroup"].dropna().unique())
-)
-
-# 2. Select Gender (New)
-selected_gender = st.selectbox(
-    "Drill Down: Select Gender", 
-    options=filtered_df["Gender"].unique()
-)
-
-# 3. Select Geography (New)
-selected_geo = st.selectbox(
-    "Drill Down: Select Geography", 
-    options=filtered_df["Geography"].unique()
-)
-
-# Apply all filters to create the specific drill-down dataframe
-drill_down_df = filtered_df[
-    (filtered_df["AgeGroup"] == selected_age) & 
-    (filtered_df["Gender"] == selected_gender) & 
-    (filtered_df["Geography"] == selected_geo)
-]
-
-# Display the results
-st.subheader(f"Balance Distribution for {selected_age} | {selected_gender} | {selected_geo}")
-
-if not drill_down_df.empty:
-    st.scatter_chart(drill_down_df["Balance"].sort_values())
-else:
-    st.warning("No data available for this specific combination of filters.")
+st.subheader(f"Balance Distribution")
+     st.scatter_chart(age_df["Balance"].sort_values())
 
 
 st.subheader("Overall Customer Churn Summary")
