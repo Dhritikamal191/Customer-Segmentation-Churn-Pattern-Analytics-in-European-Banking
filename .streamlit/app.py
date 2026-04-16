@@ -351,7 +351,7 @@ st.divider()
 
 st.subheader("Customer Distribution (Drill-Down)")
 
-drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"])
+drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
 
 segment=filtered_df.groupby(drill_option).value_counts().sort_index()
 
