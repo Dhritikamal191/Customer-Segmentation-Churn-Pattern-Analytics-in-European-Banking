@@ -348,10 +348,7 @@ with col5:
 
 st.divider()
 
-tab1,tab2,tab3=st.tabs(["Age vs Balance Distribution","Overall Churn Summary","High-Value Customer Churn Explorer"]) 
-
-with tab1:
-     st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
+st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
 
 view = st.radio(
     "Select Drill Level",
@@ -426,35 +423,28 @@ elif view == "Geography Distribution":
 
     st.plotly_chart(fig)
 
-     
-     st.subheader(f"Balance Distribution for Age Group {selected_age}")
-     st.scatter_chart(age_df["Balance"].sort_values())
+    
+overall_churn=filtered_df["Exited"].mean()*100
+st.subheader("Overall Customer Churn Summary")
+
+drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
+
+segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
+
+st.subheader(f"Churn Rate by {drill_option}")
+st.bar_chart(segment_churn)
+
+selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
+
+segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
+
+tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
+
+st.subheader(f"Tenure Churn in {selected_segment}")
+
+st.line_chart(tenure_churn)
 
 
-with tab2:
-     overall_churn=filtered_df["Exited"].mean()*100
-
-     st.subheader("Overall Customer Churn Summary")
-
-     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
-
-     segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
-
-     st.subheader(f"Churn Rate by {drill_option}")
-     st.bar_chart(segment_churn)
-
-     selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
-
-     segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
-
-     tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
-
-
-     st.subheader(f"Tenure Churn in {selected_segment}")
-
-     st.line_chart(tenure_churn)
-
-with tab3:
      st.markdown("### High Value Customer Churn Explorer")
 
      df["Gender"]=df["Gender"].fillna("Unknown")
