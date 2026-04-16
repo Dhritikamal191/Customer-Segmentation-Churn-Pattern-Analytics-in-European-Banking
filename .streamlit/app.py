@@ -211,6 +211,8 @@ value_filter=st.sidebar.selectbox("Customer Value Segment",["All","Low Value","M
 
 geo_filter=st.sidebar.selectbox("Geography",["All"]+list(df["Geography"].unique()))
 
+selected_country=st.sidebar.multiselect("Select Geography",options=df["Geography"].unique())
+
 gender_filter=st.sidebar.selectbox("Gender",["All"]+list(df["Gender"].unique()))
 
 active_filter = st.sidebar.selectbox("Active Membership",["All", "Active", "Inactive"])
@@ -241,6 +243,9 @@ if card_filter != "All":
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 1]
     else:
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 0]
+
+if selected_country!="All":
+   filtered_df=filtered_df[filtered_df["Geography"]==selected_country]
 
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
