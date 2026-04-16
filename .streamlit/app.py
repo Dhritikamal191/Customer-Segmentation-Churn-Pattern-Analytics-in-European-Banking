@@ -348,10 +348,7 @@ with col5:
 
 st.divider()
 
-st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
-
-     filtered_df["AgeGroup"]=pd.cut(filtered_df["Age"],bins=[18,30,40,50,60,100],labels=["18-30","31-40","41-50","51-60","60+"])
-
+st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")    
      age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
 
      st.subheader("Customer Distribution by Age Group")
