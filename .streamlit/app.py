@@ -248,7 +248,7 @@ filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered
 # =============================
 # Overall Churn Rate
 # ===============================
-overall_churn_rate=(filtered_df["Exited"].sum()/filtered_df.shape[0])*100
+overall_churn_rate=(df["Exited"].sum()/df.shape[0])*100
 if pd.isna(overall_churn_rate):
    overall_churn_rate=0
 
