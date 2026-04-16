@@ -348,59 +348,20 @@ with col5:
 
 st.divider()
 
+st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
 
-st.subheader("Customer Distribution (Drill-Down)")
+     filtered_df["AgeGroup"]=pd.cut(filtered_df["Age"],bins=[18,30,40,50,60,100],labels=["18-30","31-40","41-50","51-60","60+"])
 
-drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
+     age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
 
-age_dist = filtered_df["AgeGroup"].value_counts().sort_index()
+     st.subheader("Customer Distribution by Age Group")
+     st.bar_chart(age_dist)
 
-st.subheader("Customer Distribution by Age Group")
-st.bar_chart(age_dist)
+     selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
 
-
-# ---------- LEVEL 2: GENDER DRILL-DOWN ----------
-selected_gender = st.selectbox(
-    "Drill Down: Select Gender",
-    ["All"] + sorted(filtered_df["Gender"].dropna().unique())
-)
-
-gender_df = filtered_df.copy()
-
-if selected_gender != "All":
-    gender_df = gender_df[gender_df["Gender"] == selected_gender]
-
-
-# ---------- LEVEL 3: GEOGRAPHY DRILL-DOWN ----------
-selected_geo = st.selectbox(
-    "Drill Down: Select Geography",
-    ["All"] + sorted(gender_df["Geography"].dropna().unique())
-)
-
-final_df = gender_df.copy()
-
-if selected_geo != "All":
-    final_df = final_df[final_df["Geography"] == selected_geo]
-
-
-# ---------- SAFETY ----------
-if final_df.empty:
-    st.warning("⚠️ No data for selected combination")
-    st.stop()
-
-
-# ---------- FINAL VISUAL ----------
-st.subheader("Final Customer Distribution")
-
-fig = px.histogram(
-    final_df,
-    x="AgeGroup",
-    color="Gender",
-    barmode="group",
-    title="Customer Distribution by Age, Gender & Geography"
-)
-
-st.plotly_chart(fig, use_container_width=True)
+     age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
+     st.subheader(f"Balance Distribution for Age Group {selected_age}")
+     st.line_chart(age_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
