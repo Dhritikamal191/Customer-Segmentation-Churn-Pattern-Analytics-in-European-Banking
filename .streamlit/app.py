@@ -427,9 +427,6 @@ elif view == "Geography Distribution":
     st.plotly_chart(fig)
 
      
-     selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
-
-     age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
      st.subheader(f"Balance Distribution for Age Group {selected_age}")
      st.scatter_chart(age_df["Balance"].sort_values())
 
