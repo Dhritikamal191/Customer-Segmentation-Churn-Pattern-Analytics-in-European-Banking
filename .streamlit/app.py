@@ -209,7 +209,11 @@ balance_min, balance_max=st.sidebar.slider("Balance Range", float(df["Balance"].
 
 value_filter=st.sidebar.selectbox("Customer Value Segment",["All","Low Value","Medium Value","High Value"])
 
-geo_filter=st.sidebar.selectbox("Geography",["All"]+list(df["Geography"].unique()))
+geo_filter = st.sidebar.multiselect(
+    "Select Geography",
+    options=sorted(df["Geography"].dropna().unique()),
+    default=[]
+)
 
 gender_filter=st.sidebar.selectbox("Gender",["All"]+list(df["Gender"].unique()))
 
@@ -222,9 +226,8 @@ filtered_df=df.copy()
 if value_filter !="All":
    filtered_df=filtered_df[filtered_df["ValueSegment"]==value_filter]
  
-
-if geo_filter !="All":
-   filtered_df=filtered_df[filtered_df["Geography"]==geo_filter]
+if geo_filter:
+    filtered_df = filtered_df[filtered_df["Geography"].isin(geo_filter)]
 
 if gender_filter !="All":
    filtered_df=filtered_df[filtered_df["Gender"]==gender_filter]
