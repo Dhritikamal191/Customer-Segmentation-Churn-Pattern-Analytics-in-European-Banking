@@ -356,6 +356,10 @@ age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
 st.subheader("Customer Distribution by Age Group")
 st.bar_chart(age_dist)
 
+balance_dist= filtered_df["Balance"].value_counts().sort_index()
+
+st.scatter_chart(balance_dist)
+
 selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
 
 age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
