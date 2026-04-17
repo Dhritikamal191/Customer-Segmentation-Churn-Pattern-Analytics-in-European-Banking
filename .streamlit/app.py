@@ -367,7 +367,7 @@ st.line_chart(segment_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
-drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts',"HasCrcard","Balance"],key="hv_drill")
+drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrcard","Balance"],key="hv_drill")
 
 segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
 
