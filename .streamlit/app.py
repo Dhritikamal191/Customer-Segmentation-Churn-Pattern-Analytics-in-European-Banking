@@ -356,6 +356,13 @@ age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
 st.subheader("Customer Distribution by Age Group")
 st.bar_chart(age_dist)
 
+gender_dist=filtered_df["Gender"].value_counts().sort_index()
+
+st.bar_chart(gender_dist)
+
+geo_dist=filtered_df["Geography"].value_counts().sort_index()
+
+st.bar_chart(geo_dist)
 
 selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
 
