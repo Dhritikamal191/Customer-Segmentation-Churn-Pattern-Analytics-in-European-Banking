@@ -364,24 +364,9 @@ next_distribution=segment_df[next_drill].value_counts()
 st.subheader(f"{next_drill} Distribution in {selected_segment}")
 st.bar_chart(next_distribution)
 
-age_dist=filtered_df["AgeGroup"].value_counts().sort_index()
-
-st.subheader("Customer Distribution by Age Group")
-st.bar_chart(age_dist)
-
-gender_dist=filtered_df["Gender"].value_counts().sort_index()
-
-st.bar_chart(gender_dist)
-
-geo_dist=filtered_df["Geography"].value_counts().sort_index()
-
-st.bar_chart(geo_dist)
-
-selected_age=st.selectbox("Drill Down:Select Age Group",filtered_df["AgeGroup"].dropna().unique())
-
-age_df=filtered_df[filtered_df["AgeGroup"]==selected_age]
-st.subheader(f"Balance Distribution for Age Group {selected_age}")
-st.scatter_chart(age_df["Balance"].sort_values())
+selected_segment=st.selectbox("Drill Down:Select Segment",filtered_df[drill_option].dropna().unique())
+balance=filtered_df[drill_option].value_counts()
+st.scatter_chart(balance)
 
 st.subheader("Overall Customer Churn Summary")
 
