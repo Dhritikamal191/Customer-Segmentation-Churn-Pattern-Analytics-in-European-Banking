@@ -349,7 +349,7 @@ with col5:
 st.divider()
 
 st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
-drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","Balance","EstimatedSalary","NumOfProducts","HasCrCard"],key="drill_main")
+drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"],key="drill_main")
 distribution= filtered_df[drill_option].value_counts()
 
 st.subheader(f"Customer Distribution by {drill_option}")
@@ -357,7 +357,7 @@ st.line_chart(distribution)
 selected_segment=st.selectbox(f"Select {drill_option}", filtered_df[drill_option].dropna().unique(), key="drill_segment")
 segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
 
-next_options=["Geography","Gender","AgeGroup","Balance","EstimatedSalary","NumOfProducts","HasCrCard"]
+next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"]
 next_options.remove(drill_option)
 next_drill=st.selectbox("Further Drill Down By", next_options,key="drill_sub")
 next_distribution=segment_df[next_drill].value_counts()
