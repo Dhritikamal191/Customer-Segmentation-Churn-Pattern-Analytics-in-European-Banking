@@ -365,8 +365,7 @@ st.subheader(f"{next_drill} Distribution in {selected_segment}")
 st.bar_chart(next_distribution)
 
 selected_segment=st.selectbox("Drill Down:Select Segment",filtered_df[drill_option].dropna().unique(), key="dist_drill_option")
-avg_balance=segment_df.groupby(drill_option)["Balance"].mean()
-st.line_chart(avg_balance)
+st.line_chart(segment_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
