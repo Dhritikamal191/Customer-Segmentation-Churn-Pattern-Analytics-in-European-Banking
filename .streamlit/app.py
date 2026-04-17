@@ -359,7 +359,7 @@ segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
 
 next_options=["Geography","Gender","AgeGroup"]
 next_options.remove(drill_option)
-next_drill=st.selectbox("Further Drill Down By", next_options)
+next_drill=st.selectbox("Further Drill Down By", next_options, key="hv_drill")
 next_distribution=segment_df[next_drill].value_counts()
 st.subheader(f"{next_drill} Distribution in {selected_segment}")
 st.bar_chart(next_distribution)
