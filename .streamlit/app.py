@@ -363,8 +363,6 @@ next_drill=st.selectbox("Further Drill Down By", next_options,key="drill_sub")
 next_distribution=segment_df[next_drill].value_counts()
 st.subheader(f"{next_drill} Distribution in {selected_segment}")
 st.bar_chart(next_distribution)
-
-selected_segment=st.selectbox("Drill Down:Select Segment",filtered_df[drill_option].dropna().unique(), key="dist_drill_option")
 st.line_chart(segment_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
