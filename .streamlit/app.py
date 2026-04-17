@@ -365,21 +365,21 @@ st.subheader(f"{next_drill} Distribution in {selected_segment}")
 st.bar_chart(next_distribution)
 
 selected_segment=st.selectbox("Drill Down:Select Segment",filtered_df[drill_option].dropna().unique(), key="dist_drill_option")
-avg_balance=segment_df.groupby("drill_option")["Balance"].mean()
+avg_balance=segment_df.groupby(drill_option)["Balance"].mean()
 st.line_chart(avg_balance)
 
 st.subheader("Overall Customer Churn Summary")
 
-drill_options=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
+drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"],key="hv_drill")
 
-segment_churn=filtered_df.groupby(drill_options)["Exited"].mean()*100
+segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
 
-st.subheader(f"Churn Rate by {drill_options}")
+st.subheader(f"Churn Rate by {drill_option}")
 st.bar_chart(segment_churn)
 
-selected_segment=st.selectbox(f"Select {drill_options}",filtered_df[drill_options].dropna().unique())
+selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
 
-segment_df=filtered_df[filtered_df[drill_options]==selected_segment]
+segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
 
 tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
 
