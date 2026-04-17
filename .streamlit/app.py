@@ -349,7 +349,7 @@ with col5:
 st.divider()
 
 st.subheader("AGE DISTRIBUTION VS BALANCE DISTRIBUTION")
-
+drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup"])
 distribution= filtered_df[drill_option].value_counts()
 
 st.subheader(f"Customer Distribution by {drill_option}")
