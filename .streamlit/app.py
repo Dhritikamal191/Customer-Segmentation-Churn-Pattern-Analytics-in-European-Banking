@@ -351,12 +351,12 @@ st.divider()
 st.subheader("Overall Customer Distribution")
 col1, col2=st.columns(2)
 with col1:
-     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"],key="drill_main")
+     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure"],key="drill_main")
      distribution= filtered_df[drill_option].value_counts()
      st.subheader(f"Customer Distribution by {drill_option}")
      st.bar_chart(distribution)
 with col2:
-     next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"]
+     next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure"]
      next_options.remove(drill_option)
      next_drill=st.selectbox("Further Drill Down By",next_options,key="drill_sub")
      cross_distribution=filtered_df[next_drill].value_counts()
@@ -370,7 +370,7 @@ st.subheader("Overall Customer Churn Summary")
 
 col1, col2=st.columns(2)
 with col1:
-     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance"],key="hv_drill")
+     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
      segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
      st.subheader(f"Churn Rate by {drill_option}")
      st.bar_chart(segment_churn)
