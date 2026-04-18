@@ -367,19 +367,15 @@ st.scatter_chart(filtered_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
-drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance"],key="hv_drill")
-
-segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
-
-st.subheader(f"Churn Rate by {drill_option}")
-st.bar_chart(segment_churn)
-
-selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
-
-segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
-
-tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
-
-st.subheader(f"Tenure Churn in {selected_segment}")
-
-st.line_chart(tenure_churn)
+col1, col2=st.columns(2)
+with col1:
+     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance"],key="hv_drill")
+     segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
+     st.subheader(f"Churn Rate by {drill_option}")
+     st.bar_chart(segment_churn)
+with col2:
+     selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
+     segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
+     tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
+     st.subheader(f"Tenure Churn in {selected_segment}")
+     st.line_chart(tenure_churn)
