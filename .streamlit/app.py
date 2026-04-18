@@ -226,15 +226,11 @@ active_filter = st.sidebar.selectbox("Active Membership",["All", "Active", "Inac
 
 card_filter = st.sidebar.selectbox("Credit Card Status",["All", "Has Card", "No Card"])
 
-product_filter = st.sidebar.selectbox(
-    "Number of Products",
-    ["All"] + sorted(df["NumOfProducts"].dropna().unique())
-)
+product_filter = st.sidebar.selectbox("Number of Products",["All"] + sorted(df["NumOfProducts"].dropna().unique()))
 
-age_filter = st.sidebar.selectbox(
-    "Age Group",
-    ["All"] + labels
-)
+age_filter = st.sidebar.selectbox("Age Group",["All"] + labels)
+
+tenure_filter=st.sidebar.slider("Tenure",["All"]+list(df["Tenure"].unique()))
 
 filtered_df=df.copy()
 
@@ -253,7 +249,6 @@ if active_filter != "All":
     else:
         filtered_df = filtered_df[filtered_df["IsActiveMember"] == 0]
 
-
 if card_filter != "All":
     if card_filter == "Has Card":
         filtered_df = filtered_df[filtered_df["HasCrCard"] == 1]
@@ -266,6 +261,9 @@ if product_filter != "All":
 if age_filter != "All":
     filtered_df = filtered_df[filtered_df["AgeGroup"] == age_filter]
 
+if tenure_filter !="All":
+   filtered_df=filtered_df[filtered_df["Tenure"]==tenure_filter
+    
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
 
