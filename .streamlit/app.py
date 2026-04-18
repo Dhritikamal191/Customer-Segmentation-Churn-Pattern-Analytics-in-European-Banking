@@ -391,11 +391,7 @@ col1, col2 = st.columns(2)
 
 # -------- MAIN DRIVER --------
 with col1:
-    driver_option = st.selectbox(
-        "Analyze Churn By",
-        ["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"],
-        key="churn_driver_main"
-    )
+    driver_option = st.selectbox("Analyze Churn By",["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"],key="churn_driver_main")
 
     churn_driver = filtered_df.groupby(driver_option)["Exited"].mean() * 100
 
@@ -408,18 +404,10 @@ with col2:
     next_options = ["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"]
     next_options.remove(driver_option)
 
-    sub_driver = st.selectbox(
-        "Drill Down Further By",
-        next_options,
-        key="churn_driver_sub"
-    )
+    sub_driver = st.selectbox("Drill Down Further By",next_options,key="churn_driver_sub")
 
     # Cross analysis
-    cross_churn = (
-        filtered_df
-        .groupby([driver_option, sub_driver])["Exited"]
-        .mean() * 100
-    ).unstack()
+    cross_churn = (filtered_df.groupby([driver_option, sub_driver])["Exited"].mean() * 100).unstack()
 
     st.subheader(f"{sub_driver} Impact within {driver_option}")
     st.bar_chart(cross_churn)
