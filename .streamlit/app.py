@@ -359,7 +359,7 @@ with col2:
      next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"]
      next_options.remove(drill_option)
      next_drill=st.selectbox("Further Drill Down By",next_options,key="drill_sub")
-     cross_distribution=filtered_df[drill_option,next_drill].value_counts()
+     cross_distribution=filtered_df[next_drill].value_counts()
      st.subheader(f"{next_drill} Distribution in {drill_option}")
      st.bar_chart(cross_distribution)
     
