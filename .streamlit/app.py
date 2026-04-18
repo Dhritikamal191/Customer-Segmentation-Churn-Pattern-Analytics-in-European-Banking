@@ -375,21 +375,22 @@ with col1:
      st.subheader(f"Churn Rate by {drill_option}")
      st.bar_chart(segment_churn)
 with col2:
-     selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
-     segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
-     tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
-     st.subheader(f"Tenure Churn in {selected_segment}")
-     st.line_chart(tenure_churn)
+     st.subheader(f"Customer Count vs Churn in {drill_option}")
+     count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
+     count_df.columns=["Total Customers","Churned Customers"]
+     st.bar_chart(count_df)
+selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
+segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
+tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
+st.subheader(f"Tenure Churn in {selected_segment}")
+st.line_chart(tenure_churn)
 
-st.subheader(f"Customer Count vs Churn in {drill_option}")
-count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
-count_df.columns=["Total Customers","Churned Customers"]
-st.bar_chart(count_df)
-
-st.subheader("Churn Rate Distribution")
-churn_dist=filtered_df["Exited"].value_counts(normalize=True)*100
-st.bar_chart(churn_dist)
-
-st.subheader("Average Balance vs Churn")
-balance_churn=filtered_df.groupby("Exited")["Balance"].mean()
-st.bar_chart(balance_churn)
+col1, col2=st.columns(2) 
+with col1:
+     st.subheader("Churn Rate Distribution")
+     churn_dist=filtered_df["Exited"].value_counts(normalize=True)*100
+     st.bar_chart(churn_dist)
+with col2:
+     st.subheader("Average Balance vs Churn")
+     balance_churn=filtered_df.groupby("Exited")["Balance"].mean()
+     st.bar_chart(balance_churn)
