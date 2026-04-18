@@ -379,12 +379,7 @@ with col2:
      count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
      count_df.columns=["Total Customers","Churned Customers"]
      st.bar_chart(count_df)
-selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
-segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
-tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
-st.subheader(f"Tenure Churn in {selected_segment}")
-st.line_chart(tenure_churn)
-
+    
 col1, col2=st.columns(2) 
 with col1:
      st.subheader("Churn Rate Distribution")
