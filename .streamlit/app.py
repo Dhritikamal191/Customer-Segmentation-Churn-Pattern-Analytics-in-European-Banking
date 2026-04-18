@@ -262,7 +262,7 @@ if age_filter != "All":
     filtered_df = filtered_df[filtered_df["AgeGroup"] == age_filter]
 
 if tenure_filter !="All":
-   filtered_df=filtered_df[filtered_df["Tenure"]==tenure_filter
+   filtered_df=filtered_df[filtered_df["Tenure"]==tenure_filter]
     
 filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered_df["EstimatedSalary"]<=salary_max) & (filtered_df["Balance"]>=balance_min) & (filtered_df["Balance"]<=balance_max)]
 
