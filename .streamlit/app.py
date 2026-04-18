@@ -345,7 +345,7 @@ with col5:
                 unsafe_allow_html=True)
 
 st.divider()
-tab1, tab2, tab3,tab4=st.tabs([
+tab1, tab2, tab3,tab4=st.tabs(["Distribution","Churn Rates","Churn Drivers","Engagement Analysis"])
 with tab1:
      st.subheader("Overall Customer Distribution")
      col1, col2=st.columns(2)
