@@ -363,7 +363,7 @@ with col2:
      st.subheader(f"{next_drill} Distribution in {drill_option}")
      st.bar_chart(cross_distribution)
     
-st.scatter_chart(segment_df["Balance"].sort_values())
+st.scatter_chart(filtered_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
 
