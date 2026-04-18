@@ -352,7 +352,7 @@ with col1:
      drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure"],key="drill_main")
      distribution= filtered_df[drill_option].value_counts()
      st.subheader(f"Customer Distribution by {drill_option}")
-     st.bar_chart(distribution)
+     st.line_chart(distribution)
 with col2:
      next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure"]
      next_options.remove(drill_option)
@@ -371,7 +371,7 @@ with col1:
      drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
      segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
      st.subheader(f"Churn Rate by {drill_option}")
-     st.bar_chart(segment_churn)
+     st.line_chart(segment_churn)
 with col2:
      st.subheader(f"Customer Count vs Churn in {drill_option}")
      count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
