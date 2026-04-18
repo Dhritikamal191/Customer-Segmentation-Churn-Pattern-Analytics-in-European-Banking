@@ -197,7 +197,7 @@ st.divider()
 
 #Load Dataset
 df= pd.read_csv("Data/European_Bank.csv")
-df["Stayed"]==0
+df["Retained"]==0
 df["Exited"]==1
 df["Geography"]=df["Geography"].fillna("Unknown")
 df["ValueSegment"]=pd.cut(df["Balance"],bins=[0,50000,100000,df["Balance"].max()],labels=["Low Value","Medium Value","High Value"])
