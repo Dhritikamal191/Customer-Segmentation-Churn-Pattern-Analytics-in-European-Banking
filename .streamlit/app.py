@@ -354,7 +354,7 @@ distribution= filtered_df[drill_option].value_counts()
 
 st.subheader(f"Customer Distribution by {drill_option}")
 st.bar_chart(distribution)
-selected_segment=filtered_df[drill_option].dropna().unique()
+selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
 segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
 next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"]
 next_options.remove(drill_option)
