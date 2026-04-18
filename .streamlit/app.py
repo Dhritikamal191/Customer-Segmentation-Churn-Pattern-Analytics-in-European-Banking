@@ -381,7 +381,7 @@ with col2:
      st.subheader(f"Tenure Churn in {selected_segment}")
      st.line_chart(tenure_churn)
 
-st.subheader(f"Customer Count vs Churn in {drill_options}")
+st.subheader(f"Customer Count vs Churn in {drill_option}")
 count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
 count_df.columns=["Total Customers","Churned Customers"]
 st.bar_chart(count_df)
