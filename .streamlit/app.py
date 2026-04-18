@@ -379,8 +379,8 @@ col1, col2=st.columns(2)
 with col1:
      st.subheader("Churn Rate Distribution")
      churn_dist=filtered_df["Exited"].value_counts(normalize=True)*100
-     st.bar_chart(churn_dist)
+     st.area_chart(churn_dist)
 with col2:
      st.subheader("Average Balance vs Churn")
      balance_churn=filtered_df.groupby("Exited")["Balance"].mean()
-     st.bar_chart(balance_churn)
+     st.area_chart(balance_churn)
