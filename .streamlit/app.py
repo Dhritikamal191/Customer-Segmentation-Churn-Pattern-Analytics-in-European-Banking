@@ -368,7 +368,7 @@ with col1:
      drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
      segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
      st.subheader(f"Churn Rate by {drill_option}")
-     st.line_chart(segment_churn)
+     st.bar_chart(segment_churn)
 with col2:
      st.subheader(f"Customer Count vs Churn in {drill_option}")
      count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
