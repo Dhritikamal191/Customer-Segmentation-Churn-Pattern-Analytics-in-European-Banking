@@ -378,7 +378,7 @@ with col2:
      st.subheader(f"Customer Count vs Churn in {drill_option}")
      count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
      count_df.columns=["Total Customers","Churned Customers"]
-     st.scatter_chart(count_df)
+     st.line_chart(count_df)
 selected_segment=st.selectbox(f"Select {drill_option}",filtered_df[drill_option].dropna().unique())
 segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
 tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
