@@ -411,3 +411,46 @@ with col2:
 
     st.subheader(f"{sub_driver} Impact within {driver_option}")
     st.bar_chart(cross_churn)
+
+st.subheader("Engagement Analysis")
+
+# Safety check
+if filtered_df.empty:
+    st.warning("No data available for selected filters")
+    st.stop()
+
+col1, col2 = st.columns(2)
+
+# -------- MAIN ENGAGEMENT VIEW --------
+with col1:
+    engagement_driver = st.selectbox(
+        "Analyze Engagement By",
+        ["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"],
+        key="engagement_main"
+    )
+
+    engagement_rate = filtered_df.groupby(engagement_driver)["Exited"].mean() * 100
+
+    st.subheader(f"Churn Rate by {engagement_driver}")
+    st.bar_chart(engagement_rate)
+
+
+# -------- DRILL DOWN VIEW --------
+with col2:
+    next_options = ["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"]
+    next_options.remove(engagement_driver)
+
+    engagement_sub = st.selectbox(
+        "Drill Down Further By",
+        next_options,
+        key="engagement_sub"
+    )
+
+    cross_engagement = (
+        filtered_df
+        .groupby([engagement_driver, engagement_sub])["Exited"]
+        .mean() * 100
+    ).unstack()
+
+    st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
+    st.bar_chart(cross_engagement)
