@@ -230,7 +230,7 @@ product_filter = st.sidebar.selectbox("Number of Products",["All"] + sorted(df["
 
 age_filter = st.sidebar.selectbox("Age Group",["All"] + labels)
 
-tenure_filter=st.sidebar.slider("Tenure",["All"]+sorted(df["Tenure"].dropna().unique()))
+tenure_filter=st.sidebar.selectbox("Tenure",["All"]+sorted(df["Tenure"].unique()))
 
 filtered_df=df.copy()
 
