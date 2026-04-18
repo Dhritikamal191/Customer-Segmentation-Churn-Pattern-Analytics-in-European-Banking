@@ -360,7 +360,6 @@ with col2:
      segment_df=filtered_df[filtered_df[drill_option]==selected_segment]
      next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"]
      next_options.remove(drill_option)
-     next_drill=st.selectbox("Further Drill Down By", next_options,key="drill_sub")
      next_distribution=segment_df[next_drill].value_counts()
      st.subheader(f"{next_drill} Distribution in {selected_segment}")
      st.bar_chart(next_distribution)
