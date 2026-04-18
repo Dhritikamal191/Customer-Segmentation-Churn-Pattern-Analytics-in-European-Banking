@@ -345,100 +345,92 @@ with col5:
                 unsafe_allow_html=True)
 
 st.divider()
+tab1, tab2, tab3,tab4=st.tabs([
+with tab1:
+     st.subheader("Overall Customer Distribution")
+     col1, col2=st.columns(2)
+     with col1:
+          drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"],key="drill_main")
+          distribution= filtered_df[drill_option].value_counts()
+          st.subheader(f"Customer Distribution by {drill_option}")
+          st.bar_chart(distribution)
+     with col2:
+          next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
+          next_options.remove(drill_option)
+          next_drill=st.selectbox("Further Drill Down By",next_options,key="drill_sub")
+          cross_distribution=filtered_df[next_drill].value_counts()
+          st.subheader(f"{next_drill} Distribution in {drill_option}")
+          st.bar_chart(cross_distribution)
 
-st.subheader("Overall Customer Distribution")
-col1, col2=st.columns(2)
-with col1:
-     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"],key="drill_main")
-     distribution= filtered_df[drill_option].value_counts()
-     st.subheader(f"Customer Distribution by {drill_option}")
-     st.bar_chart(distribution)
-with col2:
-     next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
-     next_options.remove(drill_option)
-     next_drill=st.selectbox("Further Drill Down By",next_options,key="drill_sub")
-     cross_distribution=filtered_df[next_drill].value_counts()
-     st.subheader(f"{next_drill} Distribution in {drill_option}")
-     st.bar_chart(cross_distribution)
+with tab2:
+     st.subheader("Overall Customer Churn Summary")
 
-st.subheader("Overall Customer Churn Summary")
-
-col1, col2=st.columns(2)
-with col1:
-     drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
-     segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
-     st.subheader(f"Churn Rate by {drill_option}")
-     st.bar_chart(segment_churn)
-with col2:
-     st.subheader(f"Customer Count vs Churn in {drill_option}")
-     count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
-     count_df.columns=["Total Customers","Churned Customers"]
-     st.bar_chart(count_df)
+     col1, col2=st.columns(2)
+     with col1:
+          drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
+          segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
+          st.subheader(f"Churn Rate by {drill_option}")
+          st.bar_chart(segment_churn)
+     with col2:
+          st.subheader(f"Customer Count vs Churn in {drill_option}")
+          count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
+          count_df.columns=["Total Customers","Churned Customers"]
+          st.bar_chart(count_df)
     
-col1, col2=st.columns(2) 
-with col1:
-     st.subheader("Churn Rate Distribution")
-     churn_dist=filtered_df["Exited"].value_counts(normalize=True)*100
-     st.area_chart(churn_dist)
-with col2:
-     st.subheader("Average Balance vs Churn")
-     balance_churn=filtered_df.groupby("Exited")["Balance"].mean()
-     st.area_chart(balance_churn)
+     col1, col2=st.columns(2) 
+     with col1:
+          st.subheader("Churn Rate Distribution")
+          churn_dist=filtered_df["Exited"].value_counts(normalize=True)*100
+          st.area_chart(churn_dist)
+     with col2:
+          st.subheader("Average Balance vs Churn")
+          balance_churn=filtered_df.groupby("Exited")["Balance"].mean()
+          st.area_chart(balance_churn)
 
-st.subheader("Churn Drivers Analysis")
+with tab3:
+     st.subheader("Churn Drivers Analysis")
 
-col1, col2 = st.columns(2)
+     col1, col2 = st.columns(2)
+         
+     with col1:
+          driver_option = st.selectbox("Analyze Churn By",["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"],key="churn_driver_main")
+          churn_driver = filtered_df.groupby(driver_option)["Exited"].mean() * 100
+          st.subheader(f"Churn Rate by {driver_option}")
+          st.bar_chart(churn_driver)
 
-# -------- MAIN DRIVER --------
-with col1:
-    driver_option = st.selectbox("Analyze Churn By",["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"],key="churn_driver_main")
+     with col2:
+          next_options = ["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"]
+          next_options.remove(driver_option)
+          sub_driver = st.selectbox("Drill Down Further By",next_options,key="churn_driver_sub")
+          cross_churn = (filtered_df.groupby([driver_option, sub_driver])["Exited"].mean() * 100).unstack()
 
-    churn_driver = filtered_df.groupby(driver_option)["Exited"].mean() * 100
+          st.subheader(f"{sub_driver} Impact within {driver_option}")
+          st.bar_chart(cross_churn)
 
-    st.subheader(f"Churn Rate by {driver_option}")
-    st.bar_chart(churn_driver)
+with tab4:
+     st.subheader("Engagement Analysis")
+                     
+     if filtered_df.empty:
+        st.warning("No data available for selected filters")
+        st.stop()
 
+     col1, col2 = st.columns(2)
 
-# -------- DRILL DOWN DRIVER --------
-with col2:
-    next_options = ["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"]
-    next_options.remove(driver_option)
+     with col1:
+          engagement_driver = st.selectbox("Analyze Engagement By",["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"],key="engagement_main")
 
-    sub_driver = st.selectbox("Drill Down Further By",next_options,key="churn_driver_sub")
+          engagement_rate = filtered_df.groupby(engagement_driver)["Exited"].mean() * 100
 
-    # Cross analysis
-    cross_churn = (filtered_df.groupby([driver_option, sub_driver])["Exited"].mean() * 100).unstack()
+          st.subheader(f"Churn Rate by {engagement_driver}")
+          st.bar_chart(engagement_rate)
 
-    st.subheader(f"{sub_driver} Impact within {driver_option}")
-    st.bar_chart(cross_churn)
+     with col2:
+          next_options = ["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"]
+          next_options.remove(engagement_driver)
 
-st.subheader("Engagement Analysis")
+          engagement_sub = st.selectbox("Drill Down Further By",next_options,key="engagement_sub")
 
-# Safety check
-if filtered_df.empty:
-    st.warning("No data available for selected filters")
-    st.stop()
+          cross_engagement = (filtered_df.groupby([engagement_driver, engagement_sub])["Exited"].mean() * 100).unstack()
 
-col1, col2 = st.columns(2)
-
-# -------- MAIN ENGAGEMENT VIEW --------
-with col1:
-    engagement_driver = st.selectbox("Analyze Engagement By",["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"],key="engagement_main")
-
-    engagement_rate = filtered_df.groupby(engagement_driver)["Exited"].mean() * 100
-
-    st.subheader(f"Churn Rate by {engagement_driver}")
-    st.bar_chart(engagement_rate)
-
-
-# -------- DRILL DOWN VIEW --------
-with col2:
-    next_options = ["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"]
-    next_options.remove(engagement_driver)
-
-    engagement_sub = st.selectbox("Drill Down Further By",next_options,key="engagement_sub")
-
-    cross_engagement = (filtered_df.groupby([engagement_driver, engagement_sub])["Exited"].mean() * 100).unstack()
-
-    st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
-    st.bar_chart(cross_engagement)
+          st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
+          st.bar_chart(cross_engagement)
