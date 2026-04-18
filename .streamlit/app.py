@@ -385,3 +385,7 @@ st.subheader(f"Customer Count vs Churn in {drill_option}")
 count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
 count_df.columns=["Total Customers","Churned Customers"]
 st.bar_chart(count_df)
+
+st.subheader("Churn Rate Distribution")
+churn_dist=filtered_df["Exited"].value_counts(normalize=True)*100
+st.bar_chart(churn_dist)
