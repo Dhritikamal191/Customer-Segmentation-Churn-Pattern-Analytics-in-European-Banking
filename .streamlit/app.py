@@ -348,7 +348,7 @@ with col5:
 
 st.divider()
 
-st.subheader("Segment Distributions vs Balance Distribution")
+st.subheader("Overall Customer Distribution")
 col1, col2=st.columns(2)
 with col1:
      drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard"],key="drill_main")
@@ -362,7 +362,8 @@ with col2:
      cross_distribution=filtered_df[next_drill].value_counts()
      st.subheader(f"{next_drill} Distribution in {drill_option}")
      st.bar_chart(cross_distribution)
-    
+
+st.subheader("Balance Distribution by Segments")
 st.scatter_chart(filtered_df["Balance"].sort_values())
 
 st.subheader("Overall Customer Churn Summary")
@@ -379,3 +380,8 @@ with col2:
      tenure_churn=segment_df.groupby("Tenure")["Exited"].mean()*100
      st.subheader(f"Tenure Churn in {selected_segment}")
      st.line_chart(tenure_churn)
+
+st.subheader(f"Customer Count vs Churn in {drill_options}")
+count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
+count_df.columns=["Total Customers","Churned Customers"]
+st.bar_chart(count_df)
