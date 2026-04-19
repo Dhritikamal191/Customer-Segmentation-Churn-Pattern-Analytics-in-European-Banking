@@ -421,6 +421,48 @@ with tab3:
 
           st.subheader(f"{sub_driver} Impact within {driver_option}")
           st.bar_chart(cross_churn)
+     
+     st.subheader("🔍 Churn Driver Insights")
+
+# Main driver insight
+top_driver = churn_driver.idxmax()
+top_value = churn_driver.max()
+
+# Lowest driver
+low_driver = churn_driver.idxmin()
+low_value = churn_driver.min()
+
+st.markdown(f"""
+### 📊 Key Observations
+
+- Highest churn is observed in **{top_driver} ({top_value:.2f}%)**, indicating this segment is most at risk.  
+
+- Lowest churn is seen in **{low_driver} ({low_value:.2f}%)**, suggesting better customer retention in this group.  
+""")
+
+# From cross churn (2-level drill)
+try:
+    max_combination = cross_churn.stack().idxmax()
+    max_value = cross_churn.max().max()
+
+    st.markdown(f"""
+### 🔎 Deep Dive Insight
+
+- The highest churn occurs in **{max_combination[0]} → {max_combination[1]} ({max_value:.2f}%)**, 
+  highlighting a critical high-risk customer segment.
+""")
+except:
+    st.info("Not enough data for deeper insights")
+
+st.markdown("""
+### 💡 Business Interpretation
+
+- Certain customer segments show significantly higher churn, indicating targeted retention strategies are required.  
+
+- Behavioral factors like **activity status and product usage** strongly influence churn.  
+
+- Demographic differences suggest that churn patterns vary across regions and customer groups.  
+""")
 
 with tab4:
      st.subheader("Engagement Analysis")
