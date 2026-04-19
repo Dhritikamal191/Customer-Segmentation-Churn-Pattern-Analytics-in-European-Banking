@@ -367,7 +367,7 @@ with tab2:
           drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
           segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
           st.subheader(f"Churn Rate by {drill_option}")
-          st.bar_chart(segment_churn)
+          st.line_chart(segment_churn)
          
      with col2:
           further_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
