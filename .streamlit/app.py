@@ -448,7 +448,7 @@ with tab4:
           cross_engagement = (filtered_df.groupby([engagement_driver, engagement_sub])["Exited"].mean() * 100).unstack()
 
           st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
-          st.area_chart(cross_engagement)
+          st.bar_chart(cross_engagement)
 with tab5:
      st.subheader("📌 Key Insights & Business Interpretation")
 
