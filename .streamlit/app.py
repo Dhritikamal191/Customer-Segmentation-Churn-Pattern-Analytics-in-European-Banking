@@ -420,7 +420,7 @@ with tab3:
           cross_churn = (filtered_df.groupby([driver_option, sub_driver])["Exited"].mean() * 100).unstack()
 
           st.subheader(f"{sub_driver} Impact within {driver_option}")
-          st.line_chart(cross_churn)
+          st.area_chart(cross_churn)
 
 with tab4:
      st.subheader("Engagement Analysis")
