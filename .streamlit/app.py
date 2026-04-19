@@ -411,7 +411,7 @@ with tab3:
           driver_option = st.selectbox("Analyze Churn By",["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"],key="churn_driver_main")
           churn_driver = filtered_df.groupby(driver_option)["Exited"].mean() * 100
           st.subheader(f"Churn Rate by {driver_option}")
-          st.bar_chart(churn_driver)
+          st.area_chart(churn_driver)
 
      with col2:
           next_options = ["Geography", "Gender", "AgeGroup", "NumOfProducts", "IsActiveMember", "HasCrCard"]
