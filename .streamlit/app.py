@@ -273,7 +273,6 @@ filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered
 overall_churn_rate=(df["Exited"].sum()/df.shape[0])*100
 if pd.isna(overall_churn_rate):
    overall_churn_rate=0
-overall_churn=(filtered_df["Exited"].mean())*100
 # ===============================
 # Segment Churn Rate
 # ===============================
@@ -321,7 +320,7 @@ def kpi_card(title, value):
 
 with col1:
     st.markdown(kpi_card("📊 Overall Churn Rate",
-                         f"{overall_churn:.2f}%"),
+                         f"{overall_churn_rate:.2f}%"),
                 unsafe_allow_html=True)
 
 with col2:
