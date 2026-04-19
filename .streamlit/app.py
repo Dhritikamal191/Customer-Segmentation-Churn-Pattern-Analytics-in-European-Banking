@@ -478,96 +478,95 @@ with tab2:
           fig.update_traces(textinfo="percent+label",marker=dict(colors=["#A3D5FF","#FF9AA2"]))
           st.plotly_chart(fig, use_container_width=True)
  
-st.subheader("📊 Overall Churn Summary Insights")
+     st.subheader("📊 Overall Churn Summary Insights")
 
-# Overall churn
-overall_churn = filtered_df["Exited"].mean() * 100
+     # Overall churn
+     overall_churn = filtered_df["Exited"].mean() * 100
 
-# Geography churn
-geo_churn = filtered_df.groupby("Geography")["Exited"].mean() * 100
-top_geo = geo_churn.idxmax()
-top_geo_val = geo_churn.max()
+     # Geography churn
+     geo_churn = filtered_df.groupby("Geography")["Exited"].mean() * 100
+     top_geo = geo_churn.idxmax()
+     top_geo_val = geo_churn.max()
 
-# Gender churn
-gender_churn = filtered_df.groupby("Gender")["Exited"].mean() * 100
-top_gender = gender_churn.idxmax()
-top_gender_val = gender_churn.max()
+     # Gender churn
+     gender_churn = filtered_df.groupby("Gender")["Exited"].mean() * 100
+     top_gender = gender_churn.idxmax()
+     top_gender_val = gender_churn.max()
 
-# Age churn
-age_churn = filtered_df.groupby("AgeGroup")["Exited"].mean() * 100
-top_age = age_churn.idxmax()
-top_age_val = age_churn.max()
+     # Age churn
+     age_churn = filtered_df.groupby("AgeGroup")["Exited"].mean() * 100
+     top_age = age_churn.idxmax()
+     top_age_val = age_churn.max()
 
-# Credit card
-card_churn = filtered_df.groupby("HasCrCard")["Exited"].mean() * 100
-high_card = card_churn.idxmax()
-high_card_val = card_churn.max()
+     # Credit card
+     card_churn = filtered_df.groupby("HasCrCard")["Exited"].mean() * 100
+     high_card = card_churn.idxmax()
+     high_card_val = card_churn.max()
 
-# Tenure
-tenure_churn = filtered_df.groupby("Tenure")["Exited"].mean() * 100
-top_tenure = tenure_churn.idxmax()
-top_tenure_val = tenure_churn.max()
+     # Tenure
+     tenure_churn = filtered_df.groupby("Tenure")["Exited"].mean() * 100
+     top_tenure = tenure_churn.idxmax()
+     top_tenure_val = tenure_churn.max()
 
-# Balance impact
-balance_churn = filtered_df.groupby("Exited")["Balance"].mean()
-retained_balance = balance_churn.get(0, 0)
-churned_balance = balance_churn.get(1, 0)
+     # Balance impact
+     balance_churn = filtered_df.groupby("Exited")["Balance"].mean()
+     retained_balance = balance_churn.get(0, 0)
+     churned_balance = balance_churn.get(1, 0)
 
-# Salary impact
-salary_churn = filtered_df.groupby("Exited")["EstimatedSalary"].mean()
-retained_salary = salary_churn.get(0, 0)
-churned_salary = salary_churn.get(1, 0)
+     # Salary impact
+     salary_churn = filtered_df.groupby("Exited")["EstimatedSalary"].mean()
+     retained_salary = salary_churn.get(0, 0)
+     churned_salary = salary_churn.get(1, 0)
 
-st.markdown(f"""
-### 🔍 Key Observations
+     st.markdown(f"""
+     ### 🔍 Key Observations
 
-- Overall churn rate is **{overall_churn:.2f}%**, representing total customer attrition.  
+     - Overall churn rate is **{overall_churn:.2f}%**, representing total customer attrition.  
 
-- **{top_geo}** shows the highest churn (**{top_geo_val:.2f}%**), indicating a high-risk geographic region.  
+     - **{top_geo}** shows the highest churn (**{top_geo_val:.2f}%**), indicating a high-risk geographic region.  
 
-- Churn is highest among **{top_gender} customers ({top_gender_val:.2f}%)**, showing demographic influence.  
+     - Churn is highest among **{top_gender} customers ({top_gender_val:.2f}%)**, showing demographic influence.  
 
-- The **{top_age} age group** has the highest churn (**{top_age_val:.2f}%**), indicating age-related behavioral patterns.  
+     - The **{top_age} age group** has the highest churn (**{top_age_val:.2f}%**), indicating age-related behavioral patterns.  
 
-- Customers who **{'have' if high_card == 1 else 'do not have'} a credit card** show higher churn (**{high_card_val:.2f}%**).  
+     - Customers who **{'have' if high_card == 1 else 'do not have'} a credit card** show higher churn (**{high_card_val:.2f}%**).  
 
-- Peak churn occurs at **tenure = {top_tenure} years ({top_tenure_val:.2f}%)**, highlighting critical lifecycle stage.
-""")
+     - Peak churn occurs at **tenure = {top_tenure} years ({top_tenure_val:.2f}%)**, highlighting critical lifecycle stage.
+     """)
 
-st.markdown("""
-### 🔎 Churn Distribution Insight
+     st.markdown("""
+     ### 🔎 Churn Distribution Insight
 
-- Churn is not evenly distributed and varies significantly across demographic and behavioral factors.  
+     - Churn is not evenly distributed and varies significantly across demographic and behavioral factors.  
 
-- Certain groups contribute disproportionately to churn, indicating targeted retention opportunities.  
+     - Certain groups contribute disproportionately to churn, indicating targeted retention opportunities.  
 
-- Customer lifecycle (tenure) plays a key role in determining churn behavior.
-""")
+     - Customer lifecycle (tenure) plays a key role in determining churn behavior.
+     """)
 
-st.markdown(f"""
-### 💰 Financial Insight
+     st.markdown(f"""
+     ### 💰 Financial Insight
 
-- Average balance of retained customers is **{retained_balance:.2f}**, while churned customers have **{churned_balance:.2f}**.  
+     - Average balance of retained customers is **{retained_balance:.2f}**, while churned customers have **{churned_balance:.2f}**.  
 
-- Average estimated salary for retained customers is **{retained_salary:.2f}**, compared to **{churned_salary:.2f}** for churned customers.  
+     - Average estimated salary for retained customers is **{retained_salary:.2f}**, compared to **{churned_salary:.2f}** for churned customers.  
 
-- This suggests that {'higher-value customers are at risk' if churned_balance > retained_balance else 'lower balance customers are more prone to churn'}, 
-  impacting overall revenue.
-""")
+     - This suggests that {'higher-value customers are at risk' if churned_balance > retained_balance else 'lower balance customers are more prone to churn'},impacting overall revenue.
+     """)
 
-st.markdown("""
-### 💡 Business Interpretation
+     st.markdown("""
+     ### 💡 Business Interpretation
 
-- Churn is influenced by multiple factors including geography, demographics, and customer behavior.  
+     - Churn is influenced by multiple factors including geography, demographics, and customer behavior.  
 
-- High-risk regions and customer groups should be prioritized for retention strategies.  
+     - High-risk regions and customer groups should be prioritized for retention strategies.  
 
-- Early tenure stages may require stronger onboarding and engagement efforts.  
+     - Early tenure stages may require stronger onboarding and engagement efforts.  
 
-- Financial insights highlight the need to protect high-value customers from churn.  
+     - Financial insights highlight the need to protect high-value customers from churn.  
 
-- Personalized strategies based on customer profile can significantly reduce churn.
-""")
+     - Personalized strategies based on customer profile can significantly reduce churn.
+     """)
         
 with tab3:
      st.subheader("Churn Drivers Analysis")
