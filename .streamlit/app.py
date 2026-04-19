@@ -362,7 +362,7 @@ with tab1:
 with tab2:
      st.subheader("Overall Customer Churn Summary")
 
-     col1, col2, col3=st.columns(3)
+     col1, col2=st.columns(2)
      with col1:
           drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
           segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
@@ -377,11 +377,10 @@ with tab2:
           st.subheader(f"{further_drill} comparison with {drill_option}")
           st.bar_chart(churn_dist)
 
-     with col3:
-          st.subheader(f"Customer Count vs Churn in {drill_option}")
-          count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
-          count_df.columns=["Total Customers","Churned Customers"]
-          st.bar_chart(count_df)
+     st.subheader(f"Customer Count vs Churn in {drill_option}")
+     count_df=filtered_df.groupby(drill_option)["Exited"].agg(["count","sum"])
+     count_df.columns=["Total Customers","Churned Customers"]
+     st.bar_chart(count_df)
     
      col1, col2=st.columns(2) 
      with col1:
