@@ -376,7 +376,7 @@ with tab2:
           further_options.remove(drill_option)
           further_drill=st.selectbox("Further Drill Down By",further_options,key="drill_further")
           churn_dist=filtered_df.groupby(further_drill)["Exited"].mean()*100
-          st.subheader(f"{further_drill} Distribution in {drill_option}")
+          st.subheader(f"{further_drill} comparison with {drill_option}")
           st.bar_chart(churn_dist)
 
      with col3:
