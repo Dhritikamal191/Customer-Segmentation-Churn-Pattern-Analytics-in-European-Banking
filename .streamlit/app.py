@@ -359,81 +359,81 @@ with tab1:
           st.subheader(f"{next_drill} Distribution in {drill_option}")
           st.bar_chart(cross_distribution)
 
-st.subheader("📊 Overall Customer Distribution Insights")
+     st.subheader("📊 Overall Customer Distribution Insights")
 
-total_customers = filtered_df.shape[0]
+     total_customers = filtered_df.shape[0]
 
-# Geography
-geo_dist = filtered_df["Geography"].value_counts(normalize=True) * 100
-top_geo = geo_dist.idxmax()
-top_geo_val = geo_dist.max()
+     # Geography
+     geo_dist = filtered_df["Geography"].value_counts(normalize=True) * 100
+     top_geo = geo_dist.idxmax()
+     top_geo_val = geo_dist.max()
 
-# Gender
-gender_dist = filtered_df["Gender"].value_counts(normalize=True) * 100
-top_gender = gender_dist.idxmax()
-top_gender_val = gender_dist.max()
+     # Gender
+     gender_dist = filtered_df["Gender"].value_counts(normalize=True) * 100
+     top_gender = gender_dist.idxmax()
+     top_gender_val = gender_dist.max()
 
-# Age Group
-age_dist = filtered_df["AgeGroup"].value_counts(normalize=True) * 100
-top_age = age_dist.idxmax()
-top_age_val = age_dist.max()
+     # Age Group
+     age_dist = filtered_df["AgeGroup"].value_counts(normalize=True) * 100
+     top_age = age_dist.idxmax()
+     top_age_val = age_dist.max()
 
-# Credit Card
-card_dist = filtered_df["HasCrCard"].value_counts(normalize=True) * 100
-top_card = card_dist.idxmax()
+     # Credit Card
+     card_dist = filtered_df["HasCrCard"].value_counts(normalize=True) * 100
+     top_card = card_dist.idxmax()
 
-# Tenure
-avg_tenure = filtered_df["Tenure"].mean()
+     # Tenure
+     avg_tenure = filtered_df["Tenure"].mean()
 
-# Financials
-avg_balance = filtered_df["Balance"].mean()
-avg_salary = filtered_df["EstimatedSalary"].mean()
+     # Financials
+     avg_balance = filtered_df["Balance"].mean()
+     avg_salary = filtered_df["EstimatedSalary"].mean()
 
-st.markdown(f"""
-### 🔍 Key Observations
+     st.markdown(f"""
+     ### 🔍 Key Observations
 
-- The dataset consists of **{total_customers} customers** after applying filters.  
+     - The dataset consists of **{total_customers} customers** after applying filters.  
 
-- **{top_geo}** accounts for the largest share of customers (**{top_geo_val:.2f}%**), indicating the bank’s strongest geographic presence.  
+     - **{top_geo}** accounts for the largest share of customers (**{top_geo_val:.2f}%**), indicating the bank’s strongest geographic presence.  
 
-- The customer base is predominantly **{top_gender} ({top_gender_val:.2f}%)**, showing demographic concentration.  
+     - The customer base is predominantly **{top_gender} ({top_gender_val:.2f}%)**, showing demographic concentration.  
 
-- The most common age group is **{top_age} ({top_age_val:.2f}%)**, representing the core customer segment.  
+     - The most common age group is **{top_age} ({top_age_val:.2f}%)**, representing the core customer segment.  
 
-- Most customers **{'have' if top_card == 1 else 'do not have'} a credit card**, reflecting adoption of banking services.  
+     - Most customers **{'have' if top_card == 1 else 'do not have'} a credit card**, reflecting adoption of banking services.  
 
-- The average tenure is **{avg_tenure:.2f} years**, indicating the typical customer relationship duration.  
+     - The average tenure is **{avg_tenure:.2f} years**, indicating the typical customer relationship duration.  
 
-- The average balance is **{avg_balance:.2f}**, while the average estimated salary is **{avg_salary:.2f}**, showing the financial profile of customers.  
-""")
+     - The average balance is **{avg_balance:.2f}**, while the average estimated salary is **{avg_salary:.2f}**, showing the financial profile of customers.  
+     """)
 
-st.markdown("""
-### 🔎 Distribution Pattern Insight
+     st.markdown("""
+     ### 🔎 Distribution Pattern Insight
 
-- Customer distribution is uneven across geographic and demographic dimensions, indicating varying market penetration.  
+     - Customer distribution is uneven across geographic and demographic dimensions, indicating varying market penetration.  
 
-- A dominant age group suggests that the bank primarily serves a specific life-stage segment.  
+     - A dominant age group suggests that the bank primarily serves a specific life-stage segment.  
 
-- Credit card ownership indicates the level of product adoption among customers.  
+     - Credit card ownership indicates the level of product adoption among customers.  
 
-- Tenure distribution reflects a mix of new and long-term customers, suggesting varying levels of loyalty.  
+     - Tenure distribution reflects a mix of new and long-term customers, suggesting varying levels of loyalty.  
 
-- Financial attributes such as balance and salary highlight diversity in customer value and purchasing power.  
-""")
+     - Financial attributes such as balance and salary highlight diversity in customer value and purchasing power.  
+     """)
 
-st.markdown("""
-### 💡 Business Interpretation
+     st.markdown("""
+     ### 💡 Business Interpretation
 
-- Strong presence in specific geographies highlights key markets for retention and expansion.  
+     - Strong presence in specific geographies highlights key markets for retention and expansion.  
 
-- Demographic concentration enables targeted marketing and personalized service offerings.  
+     - Demographic concentration enables targeted marketing and personalized service offerings.  
 
-- Encouraging credit card adoption can improve customer engagement and revenue streams.  
+     - Encouraging credit card adoption can improve customer engagement and revenue streams.  
 
-- Customers with lower tenure may require onboarding and engagement strategies to improve retention.  
+     - Customers with lower tenure may require onboarding and engagement strategies to improve retention.  
 
-- Financial diversity suggests the need for customized financial products for different income and balance groups.  
-""")
+     - Financial diversity suggests the need for customized financial products for different income and balance groups.  
+     """)
 
 with tab2:
      st.subheader("Overall Customer Churn Summary")
