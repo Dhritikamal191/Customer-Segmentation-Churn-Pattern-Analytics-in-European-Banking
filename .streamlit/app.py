@@ -448,8 +448,7 @@ with tab3:
      st.markdown(f"""
      ### 🔎 Deep Dive Insight
 
-     - The highest churn occurs in **{max_combination[0]} → {max_combination[1]} ({max_value:.2f}%)**,highlighting a critical high-risk customer segment.
-     """)
+     - The highest churn occurs in **{max_combination[0]} → {max_combination[1]} ({max_value:.2f}%)**,highlighting a critical high-risk customer segment.""")
      except:
             st.info("Not enough data for deeper insights")
 
