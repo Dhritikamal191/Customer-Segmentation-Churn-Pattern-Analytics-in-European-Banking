@@ -490,6 +490,54 @@ with tab4:
 
           st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
           st.bar_chart(cross_engagement)
+
+st.subheader("🔍 Engagement Insights")
+
+# Active vs Inactive churn
+active_churn = filtered_df[filtered_df["IsActiveMember"] == 1]["Exited"].mean() * 100
+inactive_churn = filtered_df[filtered_df["IsActiveMember"] == 0]["Exited"].mean() * 100
+
+st.markdown(f"""
+### 📊 Key Observations
+
+- Active customers have a churn rate of **{active_churn:.2f}%**, while inactive customers churn at **{inactive_churn:.2f}%**.  
+
+- This indicates that **inactive customers are significantly more likely to churn**, making engagement a critical factor in retention.  
+""")
+
+top_engagement = engagement_rate.idxmax()
+top_value = engagement_rate.max()
+
+st.markdown(f"""
+- The highest churn within engagement analysis is observed in **{top_engagement} ({top_value:.2f}%)**, 
+  highlighting a key risk group.
+""")
+
+try:
+    max_combo = cross_engagement.stack().idxmax()
+    max_val = cross_engagement.max().max()
+
+    st.markdown(f"""
+### 🔎 Deep Dive Insight
+
+- The most critical segment is **{max_combo[0]} → {max_combo[1]} ({max_val:.2f}%)**, 
+  indicating where engagement strategies should be focused.
+""")
+except:
+    st.info("Not enough data for deeper insights")
+
+st.markdown("""
+### 💡 Business Interpretation
+
+- Customer engagement plays a major role in churn behavior.  
+
+- Inactive customers are more likely to leave due to lack of interaction or perceived value.  
+
+- Increasing product usage and customer activity can significantly reduce churn.  
+
+- Targeted engagement strategies such as personalized offers and communication can improve retention.
+""")
+
 with tab5:
      st.subheader("📌 Key Insights & Business Interpretation")
 
