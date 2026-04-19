@@ -393,48 +393,26 @@ with tab2:
           st.area_chart(balance_churn)
 
      
-st.subheader("Churn Rate Distribution")
+     st.subheader("Churn Rate Distribution")
 
-churn_counts = filtered_df["Exited"].value_counts().reset_index()
-churn_counts.columns = ["Exited", "Count"]
+     churn_counts = filtered_df["Exited"].value_counts().reset_index()
+     churn_counts.columns = ["Exited", "Count"]
 
-churn_counts["Exited"] = churn_counts["Exited"].map({
-    0: "Retained",
-    1: "Churned"
-})
+     churn_counts["Exited"] = churn_counts["Exited"].map({0: "Retained",1: "Churned"})
 
-fig = px.pie(
-    churn_counts,
-    names="Exited",
-    values="Count",
-    hole=0.5,  # 🔥 makes it DONUT
-    title="Customer Churn Distribution"
-)
+     fig = px.pie(churn_counts,names="Exited",values="Count",hole=0.5,title="Customer Churn Distribution")
 
-st.plotly_chart(fig, use_container_width=True)
+     st.plotly_chart(fig, use_container_width=True)
 
      st.subheader("Average Balance vs Churn")
 
-balance_churn = (
-    filtered_df.groupby("Exited")["Balance"]
-    .mean()
-    .reset_index()
-)
+     balance_churn = (filtered_df.groupby("Exited")["Balance"].mean().reset_index())
 
-balance_churn["Exited"] = balance_churn["Exited"].map({
-    0: "Retained",
-    1: "Churned"
-})
+     balance_churn["Exited"] = balance_churn["Exited"].map({0: "Retained",1: "Churned"})
 
-fig = px.pie(
-    balance_churn,
-    names="Exited",
-    values="Balance",
-    hole=0.5,
-    title="Average Balance Distribution (Churn vs Retained)"
-)
+     fig = px.pie(balance_churn,names="Exited",values="Balance",hole=0.5,title="Average Balance Distribution (Churn vs Retained)")
 
-st.plotly_chart(fig, use_container_width=True)
+     st.plotly_chart(fig, use_container_width=True)
 
 with tab3:
      st.subheader("Churn Drivers Analysis")
