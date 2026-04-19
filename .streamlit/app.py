@@ -342,7 +342,7 @@ with col5:
                 unsafe_allow_html=True)
 
 st.divider()
-tab1, tab2, tab3,tab4, tab5=st.tabs(["Distribution","Churn Rates","Churn Drivers","Engagement Analysis","Key Insights"])
+tab1, tab2, tab3,tab4=st.tabs(["Distribution","Churn Rates","Churn Drivers","Engagement Analysis"])
 with tab1:
      st.subheader("Overall Customer Distribution")
      col1, col2=st.columns(2)
@@ -700,45 +700,4 @@ with tab4:
      - Increasing product usage and customer activity can significantly reduce churn.  
 
      - Targeted engagement strategies such as personalized offers and communication can improve retention.
-     """)
-
-with tab5:
-     st.subheader("📌 Key Insights & Business Interpretation")
-
-     overall_churn = filtered_df["Exited"].mean() * 100
-
-     # Top churn geography
-     geo_churn = filtered_df.groupby("Geography")["Exited"].mean() * 100
-     top_geo = geo_churn.idxmax()
-
-     # Active vs inactive
-     active_churn = filtered_df[filtered_df["IsActiveMember"] == 1]["Exited"].mean() * 100
-     inactive_churn = filtered_df[filtered_df["IsActiveMember"] == 0]["Exited"].mean() * 100
-
-     # Products impact
-     product_churn = filtered_df.groupby("NumOfProducts")["Exited"].mean() * 100
-     top_product = product_churn.idxmax()
-
-     st.markdown(f"""
-     ### 🔍 Key Findings
-
-     - Overall churn rate is **{overall_churn:.2f}%**, indicating moderate customer attrition.  
-
-     - **{top_geo}** shows the highest churn rate, suggesting regional dissatisfaction or competition.  
-
-     - Inactive customers churn at **{inactive_churn:.2f}%**, significantly higher than active customers (**{active_churn:.2f}%**), highlighting engagement as a key retention factor.  
-
-     - Customers with **{top_product} products** show the highest churn tendency, indicating possible product dissatisfaction or low value perception.  
-
-     ---
-
-     ### 💡 Business Recommendations
-
-     - Focus on **re-engaging inactive customers** through targeted campaigns.  
-
-     - Investigate churn causes in **{top_geo}** (pricing, service quality, competition).  
-
-     - Improve **product bundling strategies** to increase customer retention.  
-
-     - Introduce **loyalty programs** for high-risk segments.  
      """)
