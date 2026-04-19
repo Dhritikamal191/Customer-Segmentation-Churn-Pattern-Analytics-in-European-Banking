@@ -371,6 +371,7 @@ with tab2:
           segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
           st.subheader(f"Churn Rate by {drill_option}")
           st.bar_chart(segment_churn)
+         
      with col2:
           further_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
           further_options.remove(drill_option)
@@ -442,3 +443,6 @@ with tab4:
 
           st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
           st.bar_chart(cross_engagement)
+         
+          overall_churn=filtered_df["Exited"].mean()*100
+          **{overall_churn:.2f}%**, indicating moderte attrition.
