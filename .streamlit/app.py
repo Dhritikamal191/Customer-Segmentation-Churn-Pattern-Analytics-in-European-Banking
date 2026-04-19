@@ -402,6 +402,71 @@ with tab2:
           fig.update_traces(textinfo="percent+label",marker=dict(colors=["#A3D5FF","#FF9AA2"]))
           st.plotly_chart(fig, use_container_width=True)
 
+st.subheader("📊 Overall Churn Summary Insights")
+
+# --- Churn by segment ---
+segment_churn = filtered_df.groupby("ValueSegment")["Exited"].mean() * 100
+top_segment = segment_churn.idxmax()
+top_segment_val = segment_churn.max()
+
+low_segment = segment_churn.idxmin()
+low_segment_val = segment_churn.min()
+
+# --- Customer count vs churn ---
+count_df = filtered_df.groupby("ValueSegment")["Exited"].agg(["count", "sum"])
+count_df.columns = ["Total", "Churned"]
+
+top_volume_segment = count_df["Churned"].idxmax()
+
+# --- Overall churn ---
+overall_churn = filtered_df["Exited"].mean() * 100
+
+# --- Balance vs churn ---
+balance_churn = filtered_df.groupby("Exited")["Balance"].mean()
+retained_balance = balance_churn.get(0, 0)
+churned_balance = balance_churn.get(1, 0)
+
+st.markdown(f"""
+### 🔍 Key Observations
+
+- Overall churn rate stands at **{overall_churn:.2f}%**, indicating the proportion of customers leaving the bank.  
+
+- **{top_segment} segment** shows the highest churn rate (**{top_segment_val:.2f}%**), making it the most vulnerable group.  
+
+- **{low_segment} segment** has the lowest churn (**{low_segment_val:.2f}%**), indicating better retention.  
+
+- In terms of volume, **{top_volume_segment} segment contributes the highest number of churned customers**, which has the greatest business impact.  
+""")
+
+st.markdown(f"""
+### 🔎 Churn Distribution Insight
+
+- The churn distribution shows that a significant portion of customers are retained, but the churned segment still represents a critical loss.  
+
+- Even a moderate churn percentage can result in substantial customer loss when total customer volume is high.  
+""")
+
+st.markdown(f"""
+### 💰 Financial Insight
+
+- Average balance of retained customers is **{retained_balance:.2f}**, while churned customers have **{churned_balance:.2f}**.  
+
+- This suggests that {'high-value customers are at risk' if churned_balance > retained_balance else 'lower balance customers are more likely to churn'}, 
+  which has direct implications on revenue and profitability.  
+""")
+
+st.markdown("""
+### 💡 Business Interpretation
+
+- Customer churn is not evenly distributed across segments, indicating the need for targeted retention strategies.  
+
+- High churn segments should be prioritized for intervention through personalized offers and engagement programs.  
+
+- Segments contributing the highest churn volume should be addressed immediately due to their financial impact.  
+
+- Understanding balance behavior helps identify whether high-value or low-value customers are more likely to leave.  
+""")
+
 with tab3:
      st.subheader("Churn Drivers Analysis")
 
