@@ -445,40 +445,40 @@ with tab4:
 with tab5:
      st.subheader("📌 Key Insights & Business Interpretation")
 
-overall_churn = filtered_df["Exited"].mean() * 100
+     overall_churn = filtered_df["Exited"].mean() * 100
 
-# Top churn geography
-geo_churn = filtered_df.groupby("Geography")["Exited"].mean() * 100
-top_geo = geo_churn.idxmax()
+     # Top churn geography
+     geo_churn = filtered_df.groupby("Geography")["Exited"].mean() * 100
+     top_geo = geo_churn.idxmax()
 
-# Active vs inactive
-active_churn = filtered_df[filtered_df["IsActiveMember"] == 1]["Exited"].mean() * 100
-inactive_churn = filtered_df[filtered_df["IsActiveMember"] == 0]["Exited"].mean() * 100
+     # Active vs inactive
+     active_churn = filtered_df[filtered_df["IsActiveMember"] == 1]["Exited"].mean() * 100
+     inactive_churn = filtered_df[filtered_df["IsActiveMember"] == 0]["Exited"].mean() * 100
 
-# Products impact
-product_churn = filtered_df.groupby("NumOfProducts")["Exited"].mean() * 100
-top_product = product_churn.idxmax()
+     # Products impact
+     product_churn = filtered_df.groupby("NumOfProducts")["Exited"].mean() * 100
+     top_product = product_churn.idxmax()
 
-st.markdown(f"""
-### 🔍 Key Findings
+     st.markdown(f"""
+     ### 🔍 Key Findings
 
-- Overall churn rate is **{overall_churn:.2f}%**, indicating moderate customer attrition.  
+     - Overall churn rate is **{overall_churn:.2f}%**, indicating moderate customer attrition.  
 
-- **{top_geo}** shows the highest churn rate, suggesting regional dissatisfaction or competition.  
+     - **{top_geo}** shows the highest churn rate, suggesting regional dissatisfaction or competition.  
 
-- Inactive customers churn at **{inactive_churn:.2f}%**, significantly higher than active customers (**{active_churn:.2f}%**), highlighting engagement as a key retention factor.  
+     - Inactive customers churn at **{inactive_churn:.2f}%**, significantly higher than active customers (**{active_churn:.2f}%**), highlighting engagement as a key retention factor.  
 
-- Customers with **{top_product} products** show the highest churn tendency, indicating possible product dissatisfaction or low value perception.  
+     - Customers with **{top_product} products** show the highest churn tendency, indicating possible product dissatisfaction or low value perception.  
 
----
+     ---
 
-### 💡 Business Recommendations
+     ### 💡 Business Recommendations
 
-- Focus on **re-engaging inactive customers** through targeted campaigns.  
+     - Focus on **re-engaging inactive customers** through targeted campaigns.  
 
-- Investigate churn causes in **{top_geo}** (pricing, service quality, competition).  
+     - Investigate churn causes in **{top_geo}** (pricing, service quality, competition).  
 
-- Improve **product bundling strategies** to increase customer retention.  
+     - Improve **product bundling strategies** to increase customer retention.  
 
-- Introduce **loyalty programs** for high-risk segments.  
-""")
+     - Introduce **loyalty programs** for high-risk segments.  
+     """)
