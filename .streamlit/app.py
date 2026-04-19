@@ -445,7 +445,7 @@ with tab3:
          max_combination = cross_churn.stack().idxmax()
          max_value = cross_churn.max().max()
 
-         st.markdown("""f
+         st.markdown(f"""
          ### 🔎 Deep Dive Insight
 
          - The highest churn occurs in **{max_combination[0]} → {max_combination[1]} ({max_value:.2f}%)**,highlighting a critical high-risk customer segment.
