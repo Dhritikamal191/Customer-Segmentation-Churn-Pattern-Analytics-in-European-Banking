@@ -276,7 +276,9 @@ if pd.isna(overall_churn_rate):
 # ===============================
 # Segment Churn Rate
 # ===============================
-segment_rate = (filtered_df.groupby("ValueSegment")["Exited"].mean()*100) 
+segment_rate = (filtered_df.groupby("ValueSegment")["Exited"].mean())*100 
+if pd.isna(segment_rate):
+   segment_rate=0
 # ===============================
 # High Value Churn
 # ===============================
