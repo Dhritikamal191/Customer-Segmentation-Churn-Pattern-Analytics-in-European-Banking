@@ -390,6 +390,7 @@ with tab2:
           churn_counts.columns = ["Exited", "Count"]
           churn_counts["Exited"] = churn_counts["Exited"].map({0: "Retained",1: "Churned"})
           fig = px.pie(churn_counts,names="Exited",values="Count",hole=0.5,title="Customer Churn Distribution")
+          fig.update_traces(textinfo="percent+label",marker=dict(colors=["#4CAF50","#FF4B4B"])
           st.plotly_chart(fig, use_container_width=True)
          
      with col2:
@@ -398,6 +399,7 @@ with tab2:
           balance_churn = (filtered_df.groupby("Exited")["Balance"].mean().reset_index())
           balance_churn["Exited"] = balance_churn["Exited"].map({0: "Retained",1: "Churned"})
           fig = px.pie(balance_churn,names="Exited",values="Balance",hole=0.5,title="Average Balance Distribution (Churn vs Retained)")
+          fig.update_traces(textinfo="percent+label",marker=dict(colors=["#4CAF50","#FF4B4B"])
           st.plotly_chart(fig, use_container_width=True)
 
 with tab3:
