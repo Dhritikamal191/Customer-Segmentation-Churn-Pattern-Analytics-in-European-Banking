@@ -437,7 +437,7 @@ with tab4:
           engagement_rate = filtered_df.groupby(engagement_driver)["Exited"].mean() * 100
 
           st.subheader(f"Churn Rate by {engagement_driver}")
-          st.bar_chart(engagement_rate)
+          st.line_chart(engagement_rate)
 
      with col2:
           next_options = ["IsActiveMember", "NumOfProducts", "AgeGroup", "Geography", "Gender"]
