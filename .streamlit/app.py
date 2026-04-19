@@ -236,8 +236,7 @@ filtered_df=df.copy()
 
 if value_filter !="All":
    filtered_df=filtered_df[filtered_df["ValueSegment"]==value_filter]
-else:
-     segment_df=filtered_df.copy()
+    
 if geo_filter:
     filtered_df = filtered_df[filtered_df["Geography"].isin(geo_filter)]
 
@@ -277,7 +276,7 @@ if pd.isna(overall_churn_rate):
 # ===============================
 # Segment Churn Rate
 # ===============================
-segment_rate = (segment_df["Exited"].mean()*100 if not segment_df.empty else 0)
+segment_rate = (filtered_df.groupby("ValueSegment")["Exited"].mean()*100) 
 # ===============================
 # High Value Churn
 # ===============================
