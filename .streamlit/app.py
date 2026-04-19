@@ -323,7 +323,7 @@ with col1:
 
 with col2:
     st.markdown(kpi_card("📈 Segment Churn Rate",
-                         f"{segment_rate:.2f}%"),
+                         f"{segment_churn_rate:.2f}%"),
                 unsafe_allow_html=True)
 
 with col3:
