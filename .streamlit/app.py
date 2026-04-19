@@ -344,7 +344,7 @@ with col5:
                 unsafe_allow_html=True)
 
 st.divider()
-tab1, tab2, tab3,tab4=st.tabs(["Distribution","Churn Rates","Churn Drivers","Engagement Analysis"])
+tab1, tab2, tab3,tab4, tab5=st.tabs(["Distribution","Churn Rates","Churn Drivers","Engagement Analysis","Key Insights"])
 with tab1:
      st.subheader("Overall Customer Distribution")
      col1, col2=st.columns(2)
@@ -442,3 +442,5 @@ with tab4:
 
           st.subheader(f"{engagement_sub} Impact within {engagement_driver}")
           st.bar_chart(cross_engagement)
+with tab5:
+     
