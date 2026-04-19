@@ -350,7 +350,7 @@ with tab1:
           drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"],key="drill_main")
           distribution= filtered_df[drill_option].value_counts()
           st.subheader(f"Customer Distribution by {drill_option}")
-          st.line_chart(distribution)
+          st.bar_chart(distribution)
      with col2:
           next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
           next_options.remove(drill_option)
