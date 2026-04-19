@@ -270,15 +270,18 @@ filtered_df=filtered_df[(filtered_df["EstimatedSalary"]>=salary_min) & (filtered
 # =============================
 # Overall Churn Rate
 # ===============================
-overall_churn_rate=(filtered_df["Exited"].sum()/df.shape[0])*100
+overall_churn_rate=(df["Exited"].sum()/df.shape[0])*100
 if pd.isna(overall_churn_rate):
    overall_churn_rate=0
 # ===============================
 # Segment Churn Rate
 # ===============================
-segment_rate = (filtered_df.groupby("ValueSegment")["Exited"].mean())*100 
-if pd.isna(segment_rate):
-   segment_rate=0
+segment_churn_rate=filtered_df[filtered_df["ValueSegment"]=="High Value"]
+high_segment=filtered_df[filtered_df["ValueSegment"]=="High Value"]
+if high_segment.shape[0]>0:
+   segment_rate=(high_segment["Exited"].sum()/high_segment.shape[0])*100
+else:
+     segment_rate=0 
 # ===============================
 # High Value Churn
 # ===============================
