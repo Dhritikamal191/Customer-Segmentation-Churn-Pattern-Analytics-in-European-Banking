@@ -256,6 +256,39 @@ div[aria-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown(
+    """
+    <style>
+    /* 1. Fixes the main input box background */
+    div[data-baseweb="select"] > div {
+        background-color: #d1e9ff !important; /* Matches your light blue */
+        border: none !important;
+    }
+
+    /* 2. Fixes the "white patches" behind the text */
+    div[data-baseweb="select"] * {
+        background-color: transparent !important;
+    }
+
+    /* 3. Fixes the dropdown menu list background when it opens */
+    ul[data-baseweb="menu"] {
+        background-color: #d1e9ff !important;
+    }
+
+    /* 4. Fixes the hover state on items in the list */
+    li[data-baseweb="menu-item"]:hover {
+        background-color: #b0d4ff !important;
+    }
+    
+    /* 5. Fixes the input text cursor area */
+    .stSelectbox div[role="button"] {
+        background-color: #d1e9ff !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 
