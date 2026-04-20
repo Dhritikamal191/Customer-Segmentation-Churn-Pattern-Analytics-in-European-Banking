@@ -55,6 +55,7 @@ Customers were segmented based on:
 - Customers aged 46-60 are most likely to churn
 - <img src="age churn.png" width="300">
 - Customers with multiple products show extreme churn behavior
+- <img src="product.png" width="300">
 - Inactive users are more prone to churn
 # Business Recommendations
 - Implement loyalty programs for high-value customers
