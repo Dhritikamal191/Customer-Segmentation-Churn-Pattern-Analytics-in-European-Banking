@@ -223,6 +223,25 @@ div[aria-selected="true"] {
     color: black !important;
 }
 
+select {
+  -webkit-appearance: none;  /* Removes Chrome/Safari default style */
+  -moz-appearance: none;     /* Removes Firefox default style */
+  appearance: none;          
+  background-color: #d1e9ff !important; /* Forces the blue */
+}
+
+/* This targets the container and the list in the image */
+.dropdown-menu, .select-items, select option {
+    background-color: #d1e9ff !important; 
+    color: #000 !important;
+    border: 1px solid #7cb9e8 !important;
+}
+
+/* Target the actual list items */
+option {
+    background-color: #d1e9ff; /* The light blue from your image */
+}
+
 /* Target the dropdown container */
 .dropdown-options-container {
     background-color: #d1e9ff; 
