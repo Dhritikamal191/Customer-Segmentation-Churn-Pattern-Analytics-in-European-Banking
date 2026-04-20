@@ -57,6 +57,7 @@ Customers were segmented based on:
 - Customers with multiple products show extreme churn behavior
 - <img src="product.png" width="300">
 - Inactive users are more prone to churn
+- <img src="member.png" width="300">
 # Business Recommendations
 - Implement loyalty programs for high-value customers
 - Increase engagement strategies for inactive users
