@@ -38,6 +38,7 @@ Customers were segmented based on:
 - Engagement Level (Active vs Inactive)
 #### Churn Analysis
 - Overall churn rate calculated
+[Overall Churn Rate](Images/churn.jpeg)
 - Churn distribution across demographics and financial features
 - Identification of high-risk customer segments
 #### Trend Analysis
