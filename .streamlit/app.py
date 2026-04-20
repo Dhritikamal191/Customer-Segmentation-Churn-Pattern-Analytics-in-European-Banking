@@ -345,6 +345,11 @@ st.divider()
 tab1, tab2, tab3,tab4=st.tabs(["Distribution","Churn Rates","Churn Drivers","Engagement Analysis"])
 with tab1:
      st.subheader("Overall Customer Distribution")
+
+     if filtered_df.empty:
+        st.warning("No data available for selected filters")
+        st.stop()
+
      col1, col2=st.columns(2)
      with col1:
           drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"],key="drill_main")
@@ -437,6 +442,10 @@ with tab1:
 
 with tab2:
      st.subheader("Overall Customer Churn Summary")
+
+     if filtered_df.empty:
+        st.warning("No data available for selected filters")
+        st.stop()
 
      col1, col2=st.columns(2)
      with col1:
@@ -570,6 +579,10 @@ with tab2:
         
 with tab3:
      st.subheader("Churn Drivers Analysis")
+
+     if filtered_df.empty:
+        st.warning("No data available for selected filters")
+        st.stop()
 
      col1, col2 = st.columns(2)
          
