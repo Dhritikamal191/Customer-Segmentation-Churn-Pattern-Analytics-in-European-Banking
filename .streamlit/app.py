@@ -352,12 +352,12 @@ with tab1:
 
      col1, col2=st.columns(2)
      with col1:
-          drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"],key="drill_main")
+          drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary","IsActiveMember"],key="drill_main")
           distribution= filtered_df[drill_option].value_counts()
           st.subheader(f"Customer Distribution by {drill_option}")
           st.bar_chart(distribution)
      with col2:
-          next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
+          next_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary","IsActiveMember"]
           next_options.remove(drill_option)
           next_drill=st.selectbox("Further Drill Down By",next_options,key="drill_sub")
           cross_distribution=filtered_df[next_drill].value_counts()
@@ -449,13 +449,13 @@ with tab2:
 
      col1, col2=st.columns(2)
      with col1:
-          drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure"],key="hv_drill")
+          drill_option=st.selectbox("Drill Down By",["Geography","Gender","AgeGroup","EstimatedSalary","NumOfProducts","HasCrCard","Balance","Tenure","IsActiveMember"],key="hv_drill")
           segment_churn=filtered_df.groupby(drill_option)["Exited"].mean()*100
           st.subheader(f"Churn Rate by {drill_option}")
           st.bar_chart(segment_churn)
          
      with col2:
-          further_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary"]
+          further_options=["Geography","Gender","AgeGroup","NumOfProducts","HasCrCard","Tenure","Balance","EstimatedSalary","IsActiveMember"]
           further_options.remove(drill_option)
           further_drill=st.selectbox("Further Drill Down By",further_options,key="drill_further")
           churn_dist=filtered_df.groupby(further_drill)["Exited"].mean()*100
