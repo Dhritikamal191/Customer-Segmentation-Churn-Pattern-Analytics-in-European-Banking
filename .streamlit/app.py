@@ -223,15 +223,12 @@ div[aria-selected="true"] {
     color: black !important;
 }
 
-</style>
-""", unsafe_allow_html=True)
-
 /* Target the dropdown container */
 .dropdown-options-container {
-    background-color: #d1e9ff; /* Match your specific blue hex */
-    border: 1px solid #7cb9e8; /* Match the border color */
-    border-radius: 8px;        /* Keep the rounded corners consistent */
-    overflow: hidden;          /* Ensures background doesn't bleed out */
+    background-color: #d1e9ff; 
+    border: 1px solid #7cb9e8; 
+    border-radius: 8px;       
+    overflow: hidden;          
 }
 
 /* Target the individual items */
@@ -245,6 +242,8 @@ div[aria-selected="true"] {
 .dropdown-item:hover {
     background-color: #b0d4ff; /* Slightly darker blue on hover */
 }
+</style>
+""", unsafe_allow_html=True)
 
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
