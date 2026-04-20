@@ -711,7 +711,7 @@ with tab3:
      low_value = churn_driver.min()
 
      st.markdown(f"""
-     ###  Key Observations
+     ### 📊 Key Observations
 
      - Highest churn is observed in **{top_driver} ({top_value:.2f}%)**, indicating this segment is most at risk.  
 
@@ -732,7 +732,7 @@ with tab3:
             st.info("Not enough data for deeper insights")
 
      st.markdown("""
-     ###  Business Interpretation
+     ### 💡 Business Interpretation
 
      - Certain customer segments show significantly higher churn, indicating targeted retention strategies are required.  
 
