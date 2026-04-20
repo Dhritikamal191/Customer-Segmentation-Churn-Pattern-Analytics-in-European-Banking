@@ -190,6 +190,42 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+
+/* Main selectbox field */
+div[data-baseweb="select"] > div {
+    background-color: #e6f0ff !important;  /* Light blue */
+    border: 1px solid #3399ff !important;
+    border-radius: 10px !important;
+}
+
+/* Dropdown menu */
+div[role="listbox"] {
+    background-color: #e6f0ff !important;  /* Same color as box */
+    border-radius: 10px !important;
+}
+
+/* Dropdown options */
+div[role="option"] {
+    background-color: #e6f0ff !important;
+    color: black !important;
+}
+
+/* Hover effect */
+div[role="option"]:hover {
+    background-color: #cce0ff !important;  /* Slight darker blue */
+}
+
+/* Selected option */
+div[aria-selected="true"] {
+    background-color: #99ccff !important;
+    color: black !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
 
