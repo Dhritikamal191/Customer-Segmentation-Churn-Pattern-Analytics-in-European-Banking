@@ -226,54 +226,6 @@ div[aria-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-
-/* ===== SELECTBOX + MULTISELECT FIELD ===== */
-div[data-baseweb="select"] > div {
-    background-color: #e6f0ff !important;
-    border: 1px solid #3399ff !important;
-    border-radius: 10px !important;
-}
-
-/* ===== DROPDOWN MENU (FOR BOTH) ===== */
-div[role="listbox"] {
-    background-color: #e6f0ff !important;
-    border: 1px solid #3399ff !important;
-    border-radius: 10px !important;
-}
-
-/* ===== OPTIONS ===== */
-div[role="option"] {
-    background-color: #e6f0ff !important;
-    color: black !important;
-}
-
-/* ===== HOVER ===== */
-div[role="option"]:hover {
-    background-color: #cce0ff !important;
-}
-
-/* ===== SELECTED OPTION ===== */
-div[aria-selected="true"] {
-    background-color: #99ccff !important;
-}
-
-/* ===== MULTISELECT TAGS (France, Germany etc) ===== */
-span[data-baseweb="tag"] {
-    background-color: #99ccff !important;
-    color: black !important;
-    border-radius: 8px !important;
-}
-
-/* ===== REMOVE DEFAULT BLUE HIGHLIGHT ===== */
-div[data-baseweb="select"] *:focus {
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
