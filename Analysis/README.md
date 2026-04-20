@@ -43,6 +43,7 @@ Customers were segmented based on:
 - Identification of high-risk customer segments
 #### Trend Analysis
 - Churn trends across tenure
+- <img src="tenure.png" width="300">
 - Multi-dimensional segmentation (Products+ Activity + Card usage)
 - Behavioral pattern discovery
 ### Key Insights
