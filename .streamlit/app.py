@@ -242,6 +242,17 @@ div[aria-selected="true"] {
 .dropdown-item:hover {
     background-color: #b0d4ff; /* Slightly darker blue on hover */
 }
+
+/* This targets almost every common naming convention for dropdown lists */
+[class*="dropdown"], [class*="select-items"], [class*="menu"], ul, li {
+    background-color: #d1e9ff !important; /* Forces the blue */
+    border-color: #7cb9e8 !important;
+}
+
+.PASTE_THE_CLASS_NAME_HERE {
+    background-color: #d1e9ff !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
