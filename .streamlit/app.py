@@ -431,7 +431,7 @@ with col3:
                 unsafe_allow_html=True)
 
 with col4:
-    st.markdown(kpi_card("🧑‍🧑‍🧒‍🧒 Engagement Drop Indicator",
+    st.markdown(kpi_card("👥 Engagement Drop Indicator",
                          f"{engagement_drop:.2f}%"),
                 unsafe_allow_html=True)
 
