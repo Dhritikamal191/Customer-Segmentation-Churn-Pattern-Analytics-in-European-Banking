@@ -48,11 +48,12 @@ Customers were segmented based on:
 - Behavioral pattern discovery
 ### Key Insights
 - High balance customers show higher churn risk
--  Female customers have a higher churn rate than males
--  Germany has the highest churn among all regions
--  Customers aged 46-60 are most likely to churn
--  Customers with multiple products show extreme churn behavior
--  Inactive users are more prone to churn
+- Female customers have a higher churn rate than males
+- <img src="gender.png" width="300">
+- Germany has the highest churn among all regions
+- Customers aged 46-60 are most likely to churn
+- Customers with multiple products show extreme churn behavior
+- Inactive users are more prone to churn
 # Business Recommendations
 - Implement loyalty programs for high-value customers
 - Increase engagement strategies for inactive users
