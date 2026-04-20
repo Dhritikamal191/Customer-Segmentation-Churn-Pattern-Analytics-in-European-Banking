@@ -226,6 +226,25 @@ div[aria-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
+/* Target the dropdown container */
+.dropdown-options-container {
+    background-color: #d1e9ff; /* Match your specific blue hex */
+    border: 1px solid #7cb9e8; /* Match the border color */
+    border-radius: 8px;        /* Keep the rounded corners consistent */
+    overflow: hidden;          /* Ensures background doesn't bleed out */
+}
+
+/* Target the individual items */
+.dropdown-item {
+    background-color: transparent;
+    color: #333;
+    padding: 10px;
+}
+
+/* Style the hover state to stay within the blue family */
+.dropdown-item:hover {
+    background-color: #b0d4ff; /* Slightly darker blue on hover */
+}
 
 st.sidebar.image("Images/unified.png",width=150)
 st.set_page_config(layout="wide")
