@@ -51,7 +51,9 @@ Customers were segmented based on:
 - Female customers have a higher churn rate than males
 - <img src="gender.png" width="300">
 - Germany has the highest churn among all regions
+- <img src="geo.png" width="300">
 - Customers aged 46-60 are most likely to churn
+- <img src="age churn.png" width="300">
 - Customers with multiple products show extreme churn behavior
 - Inactive users are more prone to churn
 # Business Recommendations
