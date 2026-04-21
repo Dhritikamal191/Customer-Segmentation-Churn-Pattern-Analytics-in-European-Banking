@@ -80,3 +80,11 @@ Customers were segmented based on:
 
 # Conclusion
 This project demonstrates how customer segmentation and exploratory analysis can effectively identify churn patterns. By combining data insights with business strategies, banks can proactively reduce churn and improve customer satisfaction.
+
+# 
+ [Open Dashboard](https://gzzrh9aetp8f8yxjgb8qxc.streamlit.app/) 
+ 
+#
+    Author: Dhritikamal Das
+#
+###  [My_LinkedIn](https://www.linkedin.com/in/dhritikamal-das-9912652a5/)
